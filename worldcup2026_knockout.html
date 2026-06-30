@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FIFA ワールドカップ 2026 ノックアウト速報＆トーナメント表</title>
+<style>
+  :root{
+    --bg1:#06112a; --bg2:#0f2350; --bg3:#16336b;
+    --card:#0d1c3d; --card2:#13254a; --border:#2c4374;
+    --gold:#f0c64b; --gold2:#c79325; --txt:#eaf0ff; --muted:#90a6d0;
+    --line:#3a548c; --win:#3ee0a4; --live:#ff4d4d;
+    --ned:#f2913a; --mar:#ff4d4d;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;
+    color:var(--txt); min-height:100vh; padding-bottom:60px; position:relative;
+    background:
+      radial-gradient(1100px 520px at 15% -5%, rgba(60,110,210,.30), transparent 60%),
+      radial-gradient(900px 480px at 92% 0%, rgba(240,198,75,.12), transparent 55%),
+      radial-gradient(800px 700px at 50% 120%, rgba(62,224,164,.10), transparent 60%),
+      linear-gradient(165deg,var(--bg1),var(--bg2) 55%,var(--bg3));
+    background-attachment:fixed;
+  }
+  body::before{
+    content:""; position:fixed; inset:0; pointer-events:none; opacity:.05; z-index:0;
+    background-image:linear-gradient(rgba(255,255,255,.6) 1px,transparent 1px),
+                     linear-gradient(90deg,rgba(255,255,255,.6) 1px,transparent 1px);
+    background-size:46px 46px;
+  }
+  header,.section-label,.bracket-wrap,.today,.hint{position:relative; z-index:2;}
+  header{
+    position:sticky; top:0; z-index:50;
+    background:linear-gradient(180deg,rgba(6,14,34,.97),rgba(6,14,34,.82));
+    backdrop-filter:blur(10px); border-bottom:1px solid var(--border);
+    box-shadow:0 6px 26px rgba(0,0,0,.45);
+    padding:12px 20px; display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+  }
+  .logo{font-size:26px; filter:drop-shadow(0 0 10px rgba(240,198,75,.65)); animation:floaty 3.4s ease-in-out infinite;}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+  .title h1{
+    font-size:17px; letter-spacing:.6px; font-weight:800;
+    background:linear-gradient(92deg,#fff 10%,var(--gold) 55%,#fff 90%);
+    background-size:200% auto; -webkit-background-clip:text; background-clip:text; color:transparent;
+    animation:shine 6s linear infinite;
+  }
+  @keyframes shine{to{background-position:200% center}}
+  .title p{font-size:11px; color:var(--muted);}
+  .spacer{flex:1;}
+  .updated{font-size:11px; color:var(--muted); text-align:right; line-height:1.5;}
+  .btn{
+    background:linear-gradient(180deg,var(--gold),var(--gold2)); color:#1a1304;
+    border:none; padding:9px 16px; border-radius:9px; font-weight:800; font-size:13px;
+    cursor:pointer; display:flex; align-items:center; gap:6px;
+    box-shadow:0 3px 14px rgba(240,198,75,.35); transition:.15s;
+  }
+  .btn:hover{transform:translateY(-1px); box-shadow:0 5px 18px rgba(240,198,75,.5);}
+  .btn:active{transform:translateY(1px);}
+  .section-label{
+    font-size:13px; font-weight:800; color:var(--gold);
+    padding:20px 20px 10px; letter-spacing:1.5px; display:flex; align-items:center; gap:10px;
+  }
+  .section-label::after{content:""; flex:1; height:1px; background:linear-gradient(90deg,rgba(240,198,75,.5),transparent);}
+  .today{display:flex; gap:13px; overflow-x:auto; padding:4px 20px 14px; scrollbar-width:thin;}
+  .tcard{
+    flex:0 0 auto; min-width:214px; border-radius:14px; padding:13px 15px; cursor:pointer;
+    transition:.18s; position:relative; overflow:hidden;
+    background:linear-gradient(160deg,var(--card2),#0c1a36); border:1px solid var(--border);
+  }
+  .tcard::before{content:""; position:absolute; inset:0 auto 0 0; width:4px; background:linear-gradient(180deg,var(--gold),var(--gold2));}
+  .tcard:hover{border-color:var(--gold); transform:translateY(-3px); box-shadow:0 10px 26px rgba(0,0,0,.4);}
+  .tcard .badge{font-size:10px; font-weight:800; padding:3px 9px; border-radius:20px; display:inline-block; margin-bottom:9px; letter-spacing:.5px;}
+  .b-live{background:var(--live); color:#fff; animation:pulse 1.3s infinite; box-shadow:0 0 12px rgba(255,77,77,.6);}
+  .b-up{background:#26406f; color:var(--muted);}
+  .b-fin{background:linear-gradient(180deg,#1d6b4d,#14503a); color:#bff7df;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
+  .trow{display:flex; align-items:center; justify-content:space-between; font-size:14px; margin:4px 0;}
+  .trow .nm{display:flex; align-items:center; gap:8px;}
+  .trow .sc{font-weight:800; font-variant-numeric:tabular-nums;}
+  .tcard .meta{font-size:10.5px; color:var(--muted); margin-top:8px; padding-top:7px; border-top:1px dashed rgba(144,166,208,.25);}
+  .flag{font-size:17px; width:22px; text-align:center; filter:drop-shadow(0 1px 2px rgba(0,0,0,.4));}
+  .bracket-wrap{overflow-x:auto; padding:6px 16px 30px; scrollbar-width:thin;}
+  .bracket{position:relative; display:flex; align-items:stretch; min-width:1320px; min-height:860px;}
+  #lines{position:absolute; top:0; left:0; pointer-events:none; z-index:1;}
+  .col{display:flex; flex-direction:column; justify-content:space-around; flex:1; min-width:154px; position:relative; z-index:2; gap:6px;}
+  .col.center{flex:1.2; justify-content:center; gap:24px;}
+  .round-title{
+    text-align:center; font-size:10.5px; color:var(--gold); letter-spacing:1.5px; margin-bottom:4px;
+    font-weight:800; display:flex; align-items:center; justify-content:center; gap:6px; opacity:.85;
+  }
+  .round-title::before,.round-title::after{content:"\25C6"; font-size:6px; color:var(--gold2);}
+  .match{
+    background:linear-gradient(160deg,var(--card),#0a1631); border:1px solid var(--border);
+    border-radius:11px; padding:7px 9px; cursor:pointer; transition:.16s; position:relative;
+    box-shadow:0 2px 10px rgba(0,0,0,.28);
+  }
+  .match:hover{border-color:var(--gold); transform:translateY(-1px); box-shadow:0 0 0 1px var(--gold),0 6px 18px rgba(0,0,0,.4);}
+  .match.live{border-color:var(--live); box-shadow:0 0 0 1px rgba(255,77,77,.5),0 0 18px rgba(255,77,77,.25);}
+  .m-side{display:flex; align-items:center; justify-content:space-between; padding:3px 2px; border-radius:5px;}
+  .m-side .nm{display:flex; align-items:center; gap:7px; font-size:12.5px; overflow:hidden;}
+  .m-side .nm span.t{white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:90px;}
+  .m-side .sc{font-size:13px; font-weight:800; font-variant-numeric:tabular-nums; color:var(--muted); min-width:14px; text-align:center;}
+  .ovr{flex:none; font-size:10px; font-weight:800; font-variant-numeric:tabular-nums; line-height:1; padding:2px 4px; border-radius:4px; color:#0b0f14; background:linear-gradient(135deg,#ffd86b,#f5a623); box-shadow:0 1px 2px rgba(0,0,0,.35);}
+  .ovr-big{margin-top:4px; font-size:11px; font-weight:700; color:var(--muted); letter-spacing:.3px;}
+  .ovr-big b{font-size:15px; color:#f5a623;}
+  .m-side.win{background:linear-gradient(90deg,rgba(62,224,164,.14),transparent);}
+  .m-side.win .nm span.t{color:#fff; font-weight:800;}
+  .m-side.win .sc{color:var(--win);}
+  .m-side.win .nm::after{content:"\25B6"; font-size:8px; color:var(--win); margin-left:2px;}
+  .m-side.lose{opacity:.46;}
+  .m-divider{height:1px; background:linear-gradient(90deg,transparent,var(--border),transparent); margin:1px 0;}
+  .m-foot{font-size:9.5px; color:var(--muted); text-align:center; margin-top:4px; letter-spacing:.3px;}
+  .m-foot.livef{color:var(--live); font-weight:800;}
+  .m-foot.finf{color:var(--win); opacity:.85;}
+  .pen{font-size:9px; color:var(--gold); margin-left:4px;}
+  .live-dot{display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--live); margin-right:4px; animation:pulse 1.1s infinite; vertical-align:middle;}
+  .champ-wrap{position:relative; padding:6px; border-radius:16px;
+    background:linear-gradient(160deg,rgba(240,198,75,.16),rgba(240,198,75,.02));
+    border:1px solid rgba(240,198,75,.4); overflow:hidden;}
+  .champ-wrap::after{content:""; position:absolute; inset:0; pointer-events:none;
+    background:radial-gradient(120px 80px at 50% 0%,rgba(240,198,75,.25),transparent 70%);}
+  .champ-label{text-align:center; font-size:11px; color:var(--gold); font-weight:800; margin-bottom:2px; letter-spacing:2px;}
+  .trophy{text-align:center; font-size:36px; margin:0 0 4px; filter:drop-shadow(0 0 14px rgba(240,198,75,.7)); animation:floaty 3.4s ease-in-out infinite;}
+  .final-card{border-color:var(--gold)!important; background:linear-gradient(180deg,#1a2f59,#0e1d3d)!important;}
+  .third{margin-top:8px;}
+  .third .round-title{color:#caa14f;}
+  .spark{position:absolute; width:5px; height:5px; border-radius:50%; background:var(--gold); opacity:.8; animation:twinkle 2.4s infinite;}
+  @keyframes twinkle{0%,100%{opacity:0; transform:scale(.4)}50%{opacity:.9; transform:scale(1)}}
+  .overlay{position:fixed; inset:0; background:rgba(3,7,18,.82); z-index:100; display:none;
+    align-items:flex-start; justify-content:center; padding:20px; overflow-y:auto; backdrop-filter:blur(3px);}
+  .overlay.open{display:flex; animation:fade .2s ease;}
+  @keyframes fade{from{opacity:0}to{opacity:1}}
+  .modal{background:linear-gradient(180deg,#0e1c3a,#091228); border:1px solid var(--border); border-radius:18px;
+    width:100%; max-width:580px; overflow:hidden; margin:auto; box-shadow:0 24px 70px rgba(0,0,0,.7);
+    animation:pop .25s cubic-bezier(.2,.8,.3,1.2);}
+  @keyframes pop{from{transform:scale(.94); opacity:0}to{transform:scale(1); opacity:1}}
+  .modal-head{display:flex; align-items:center; justify-content:space-between; padding:15px 20px;
+    background:linear-gradient(180deg,rgba(240,198,75,.10),transparent); border-bottom:1px solid var(--border);}
+  .modal-head h3{font-size:15px; font-weight:800;}
+  .modal-head .tag{font-size:10px; color:var(--gold); letter-spacing:1px;}
+  .close{background:none; border:none; color:var(--muted); font-size:24px; cursor:pointer; line-height:1; transition:.15s;}
+  .close:hover{color:#fff;}
+  .score-box{padding:22px 18px 12px; text-align:center; position:relative;}
+  .score-status{font-size:12px; font-weight:800; margin-bottom:14px; letter-spacing:.5px;}
+  .ss-live{color:var(--live);} .ss-fin{color:var(--win);} .ss-up{color:var(--muted);}
+  .score-main{display:flex; align-items:center; justify-content:center; gap:22px;}
+  .score-team{flex:1; max-width:160px;}
+  .score-team .bigflag{font-size:46px; filter:drop-shadow(0 3px 6px rgba(0,0,0,.5));}
+  .score-team .tn{font-size:14px; margin-top:7px; font-weight:800;}
+  .score-num{font-size:46px; font-weight:900; font-variant-numeric:tabular-nums; min-width:38px; text-shadow:0 0 18px rgba(255,255,255,.18);}
+  .score-sep{font-size:24px; color:var(--muted);}
+  .pen-line{font-size:12px; color:var(--gold); margin-top:8px; font-weight:700;}
+  .tabs{display:flex; border-top:1px solid var(--border); border-bottom:1px solid var(--border); margin-top:14px;}
+  .tab{flex:1; text-align:center; padding:12px 6px; font-size:12.5px; cursor:pointer; color:var(--muted); border-bottom:2px solid transparent; transition:.15s;}
+  .tab.active{color:#fff; background:linear-gradient(180deg,#17294c,#101f3c); border-bottom-color:var(--gold); font-weight:800;}
+  .tab:hover{color:#cfe;}
+  .tab-body{padding:18px;}
+  .tab-pane{display:none;} .tab-pane.active{display:block; animation:fade .2s ease;}
+  .tl{position:relative; padding:4px 0;}
+  .tl::before{content:""; position:absolute; left:50%; top:0; bottom:0; width:2px; transform:translateX(-50%);
+    background:linear-gradient(180deg,transparent,var(--border) 12%,var(--border) 88%,transparent);}
+  .tl-ev{display:flex; align-items:center; margin:10px 0; position:relative;}
+  .tl-ev .side{flex:1; font-size:12.5px;}
+  .tl-ev .side.l{text-align:right; padding-right:16px;}
+  .tl-ev .side.r{text-align:left; padding-left:16px;}
+  .tl-ev .min{flex:0 0 auto; width:46px; text-align:center; font-size:10.5px; font-weight:800;
+    color:#0d1a30; background:var(--gold); border-radius:20px; padding:3px 0; z-index:2; box-shadow:0 0 0 3px #0c1830;}
+  .tl-ev .pl{font-weight:700;} .tl-ev .nt{font-size:10.5px; color:var(--muted);}
+  .ev-ic{font-size:14px;}
+  .tl-ev.info .min{background:#33507f; color:#cfe;}
+  .tl-ev.pen .min{background:linear-gradient(180deg,var(--gold),var(--gold2));}
+  .wp-title{text-align:center; font-size:12px; font-weight:800; margin-bottom:10px;}
+  .wp-head{display:flex; justify-content:space-between; font-size:11px; margin-bottom:6px;}
+  .wp-head b{font-size:14px;}
+  .wp-bar{display:flex; height:9px; border-radius:6px; overflow:hidden; box-shadow:inset 0 0 0 1px rgba(255,255,255,.06);}
+  .wp-bar i{display:block;}
+  .stat-row{display:flex; align-items:center; justify-content:space-between; padding:8px 0; font-size:13px; border-bottom:1px solid rgba(44,67,116,.4);}
+  .stat-row .lbl{flex:1; text-align:center; color:var(--muted); font-size:11.5px;}
+  .stat-row .v{width:56px; text-align:center; font-weight:800; font-variant-numeric:tabular-nums;}
+  .stat-row .v.hi-l{color:var(--ned);} .stat-row .v.hi-r{color:var(--mar);}
+  .lu{display:flex; gap:14px;}
+  .lu .col-lu{flex:1;}
+  .lu .col-lu h4{font-size:12px; text-align:center; margin-bottom:9px; padding-bottom:7px; border-bottom:1px solid var(--border);}
+  .lu-row{display:flex; gap:7px; font-size:11.5px; padding:3.5px 0; align-items:center;}
+  .lu-row .pos{width:24px; color:var(--muted); font-size:10px;}
+  .lu-row .no{width:18px; color:var(--gold); text-align:right; font-weight:700;}
+  .info-line{font-size:12.5px; color:var(--muted); padding:7px 0; display:flex; gap:10px; border-bottom:1px solid rgba(44,67,116,.3);}
+  .info-line b{color:var(--txt); font-weight:700; min-width:64px;}
+  .empty{text-align:center; color:var(--muted); font-size:12.5px; padding:26px 0;}
+  .modal-foot{padding:11px 18px 16px; font-size:10.5px; color:var(--muted); border-top:1px solid var(--border);}
+  .hint{font-size:11px; color:var(--muted); padding:0 20px 24px; text-align:center; line-height:1.7; max-width:760px; margin:0 auto;}
+  .own{font-size:9px; font-weight:700; color:#bdf3ff; background:rgba(62,150,224,.18); border:1px solid rgba(120,180,240,.4); border-radius:4px; padding:1px 4px; white-space:nowrap; line-height:1.3;}
+  .own-big{margin-top:5px; font-size:11px; font-weight:700; color:#bdf3ff;}
+  .tcard .own{margin-left:6px;}
+  @media(max-width:600px){.title p{display:none;} .score-team .bigflag{font-size:34px;} .score-num{font-size:36px;}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">🏆</div>
+  <div class="title">
+    <h1>FIFA ワールドカップ 2026 — ノックアウト速報</h1>
+    <p>北中米大会 ベスト32〜決勝 ／ トーナメント表＆ライブスコア</p>
+  </div>
+  <div class="spacer"></div>
+  <div class="updated" id="updatedBox"></div>
+  <button class="btn" onclick="manualUpdate()">🔄 更新</button>
+</header>
+
+<div class="section-label">⚡ 直近・本日の試合</div>
+<div class="today" id="todayStrip"></div>
+
+<div class="section-label">🗺 トーナメント表（試合をタップで詳細・速報）</div>
+<div class="bracket-wrap"><div class="bracket" id="bracket"><svg id="lines"></svg></div></div>
+<div class="hint">
+  ※ 表示中のデータは「更新時刻」時点のものです。自動更新が有効な場合、スコアが動いた時だけファイルが書き換わります（反映にはブラウザの再読込が必要）。<br>
+  「🔄 更新」ボタンは画面の再描画用。得点者・カード・交代は判明分のみ掲載。時間はすべて日本時間（JST）。
+</div>
+
+<div class="overlay" id="overlay" onclick="if(event.target===this)closeModal()"><div class="modal" id="modal"></div></div>
+
+<script>
+var DATA_UPDATED = "2026/6/30 (火) 13:05 取得";
+var F = {
+  GER:"🇩🇪",PAR:"🇵🇾",FRA:"🇫🇷",SWE:"🇸🇪",RSA:"🇿🇦",CAN:"🇨🇦",NED:"🇳🇱",MAR:"🇲🇦",
+  POR:"🇵🇹",CRO:"🇭🇷",ESP:"🇪🇸",ALG:"🇩🇿",USA:"🇺🇸",BIH:"🇧🇦",BEL:"🇧🇪",SEN:"🇸🇳",
+  BRA:"🇧🇷",JPN:"🇯🇵",CIV:"🇨🇮",NOR:"🇳🇴",MEX:"🇲🇽",ECU:"🇪🇨",ENG:"🏴",COD:"🇨🇩",
+  ARG:"🇦🇷",CPV:"🇨🇻",AUS:"🇦🇺",EGY:"🇪🇬",SUI:"🇨🇭",IRN:"🇮🇷",COL:"🇨🇴",GHA:"🇬🇭",TBD:"⬜"
+};
+var N = {
+  GER:"ドイツ",PAR:"パラグアイ",FRA:"フランス",SWE:"スウェーデン",RSA:"南アフリカ",CAN:"カナダ",
+  NED:"オランダ",MAR:"モロッコ",POR:"ポルトガル",CRO:"クロアチア",ESP:"スペイン",ALG:"アルジェリア",
+  USA:"アメリカ",BIH:"ボスニア",BEL:"ベルギー",SEN:"セネガル",BRA:"ブラジル",JPN:"日本",
+  CIV:"コートジボワール",NOR:"ノルウェー",MEX:"メキシコ",ECU:"エクアドル",ENG:"イングランド",COD:"DRコンゴ",
+  ARG:"アルゼンチン",CPV:"カーボベルデ",AUS:"オーストラリア",EGY:"エジプト",SUI:"スイス",IRN:"イラン",
+  COL:"コロンビア",GHA:"ガーナ",TBD:"勝者待ち"
+};
+/* 各国の担当者（オーナー）。勝ち上がると担当者も次ラウンドに自動で追従する。 */
+var OWN = {
+  GER:"やまと",PAR:"しょうえい",FRA:"ちゅん",SWE:"だいき",RSA:"だいち",CAN:"りょうた",
+  NED:"ゆめと",MAR:"にしれん",POR:"まっぽ",CRO:"トーマス",ESP:"あみ",ALG:"黒木",
+  USA:"だいと",BIH:"れんた",BEL:"けんと",SEN:"つばさ",BRA:"のすけ",JPN:"内野",
+  CIV:"ゆうと",NOR:"れん",MEX:"",ECU:"なおき",ENG:"あつき",COD:"りょうが",
+  ARG:"しずく",CPV:"マイキー",AUS:"かおる",EGY:"けいご",SUI:"",IRN:"こうせい",
+  COL:"あきら",GHA:"けいと",TBD:""
+};
+function ownTag(c){var o=OWN[c]; return o?'<span class="own">'+o+'</span>':'';}
+function ownBig(c){var o=OWN[c]; return o?'<div class="own-big">担当 '+o+'</div>':'';}
+function t(c,s){return {c:c, s:(s===undefined?null:s)};}
+
+/* チーム戦力 OVR（総合値・0-100スケール）
+   算出根拠: FIFA世界ランキング ポイント（2026/6/11更新）を基準に
+   0-100へ線形換算し、スカッドの選手層・直近の戦力を加味して微調整。
+   出典: FIFA/Coca-Cola Men's World Ranking (2026年6月). */
+var OVR = {
+  ARG:91, ESP:91, FRA:90, ENG:89, BRA:88, POR:87, NED:86, MAR:86, BEL:86,
+  GER:85, CRO:85, COL:84, MEX:84, SEN:83, USA:83, JPN:83, SUI:82, IRN:81,
+  NOR:80, ECU:80, ALG:79, EGY:79, CAN:79, AUS:79, SWE:79, CIV:78, PAR:76,
+  COD:75, RSA:73, BIH:72, CPV:71, GHA:70, TBD:null
+};
+function ovrBadge(c){ var v=OVR[c]; return (v===null||v===undefined)?"":'<span class="ovr">'+v+'</span>'; }
+function ovrBadgeBig(c){ var v=OVR[c]; return (v===null||v===undefined)?"":'<div class="ovr-big">OVR <b>'+v+'</b></div>'; }
+
+var M = {
+  L1:{col:"L_R32",dt:"6/30(火) 5:30",venue:"ジレット・スタジアム",status:"finished",
+      top:t("GER",1),bot:t("PAR",1),pen:{top:3,bot:4},winner:"bot",
+      events:[
+        {min:"前半",type:"goal",team:"bot",pl:"エンシソ",nt:"パラグアイ先制"},
+        {min:"後半",type:"goal",team:"top",pl:"ハフェルツ",nt:"ヴィルツのクロスをヘッドで同点"},
+        {min:"PK",type:"pen",team:"bot",pl:"PK戦 4-3",nt:"カナレが決勝PK／GKギルが2セーブ"}
+      ]},
+  L2:{col:"L_R32",dt:"7/1(水) 6:00",venue:"メットライフ・スタジアム",status:"upcoming",top:t("FRA"),bot:t("SWE")},
+  L3:{col:"L_R32",dt:"6/29(月)",venue:"SoFiスタジアム",status:"finished",top:t("RSA",0),bot:t("CAN",1),winner:"bot",
+      events:[{min:"90+2'",type:"goal",team:"bot",pl:"エウスタキオ",nt:"ロスタイムの劇的決勝点"}]},
+  L4:{col:"L_R32",dt:"6/30(火) 10:00",venue:"エスタディオ モンテレイ",status:"finished",
+      top:t("NED",1),bot:t("MAR",1),pen:{top:2,bot:3},winner:"bot",detail:"NEDMAR",
+      events:[
+        {min:"前半",type:"info",pl:"スコアレスで進行",nt:"両者決定機を作るも得点ならず"},
+        {min:"HT",type:"info",pl:"ハーフタイム 0-0",nt:"モロッコが枠内シュートでやや上回る"},
+        {min:"後半",type:"goal",team:"top",pl:"ガクポ",nt:"オランダ先制"},
+        {min:"90+1'",type:"goal",team:"bot",pl:"ディオプ",nt:"土壇場の同点弾で延長へ"},
+        {min:"PK",type:"pen",team:"bot",pl:"PK戦 3-2",nt:"サイバリが決勝PK／モロッコがベスト16進出"}
+      ]},
+  L5:{col:"L_R32",dt:"7/3(金) 8:00",venue:"-",status:"upcoming",top:t("POR"),bot:t("CRO")},
+  L6:{col:"L_R32",dt:"7/3(金) 4:00",venue:"-",status:"upcoming",top:t("ESP"),bot:t("ALG")},
+  L7:{col:"L_R32",dt:"7/2(木) 9:00",venue:"-",status:"upcoming",top:t("USA"),bot:t("BIH")},
+  L8:{col:"L_R32",dt:"7/2(木) 5:00",venue:"-",status:"upcoming",top:t("BEL"),bot:t("SEN")},
+  LA:{col:"L_R16",dt:"7/5(日) 6:00",status:"upcoming",top:t("PAR"),bot:t("TBD")},
+  LB:{col:"L_R16",dt:"7/5(日) 2:00",status:"upcoming",top:t("CAN"),bot:t("MAR")},
+  LC:{col:"L_R16",dt:"7/7(火) 4:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
+  LD:{col:"L_R16",dt:"7/7(火) 9:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
+  LQ1:{col:"L_QF",dt:"7/10(金) 5:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
+  LQ2:{col:"L_QF",dt:"7/11(土) 4:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
+  LSF:{col:"L_SF",dt:"7/15(水) 4:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
+  R1:{col:"R_R32",dt:"6/29(月)",venue:"ヒューストン・スタジアム",status:"finished",top:t("BRA",2),bot:t("JPN",1),winner:"top",
+      events:[
+        {min:"29'",type:"goal",team:"bot",pl:"佐野 海舟",nt:"日本が先制"},
+        {min:"56'",type:"goal",team:"top",pl:"カゼミーロ",nt:"ブラジル同点"},
+        {min:"90+5'",type:"goal",team:"top",pl:"マルチネッリ",nt:"土壇場の逆転弾"}
+      ]},
+  R2:{col:"R_R32",dt:"7/1(水) 2:00",venue:"AT&Tスタジアム",status:"upcoming",top:t("CIV"),bot:t("NOR")},
+  R3:{col:"R_R32",dt:"7/1(水) 10:00",venue:"エスタディオ・アステカ",status:"upcoming",top:t("MEX"),bot:t("ECU")},
+  R4:{col:"R_R32",dt:"7/2(木) 1:00",venue:"-",status:"upcoming",top:t("ENG"),bot:t("COD")},
+  R5:{col:"R_R32",dt:"7/4(土) 7:00",venue:"-",status:"upcoming",top:t("ARG"),bot:t("CPV")},
+  R6:{col:"R_R32",dt:"7/4(土) 3:00",venue:"-",status:"upcoming",top:t("AUS"),bot:t("EGY")},
+  R7:{col:"R_R32",dt:"7/3(金) 12:00",venue:"-",status:"upcoming",top:t("SUI"),bot:t("IRN")},
+  R8:{col:"R_R32",dt:"7/4(土) 10:30",venue:"-",status:"upcoming",top:t("COL"),bot:t("GHA")},
+  RA:{col:"R_R16",dt:"7/6(月) 5:00",status:"upcoming",top:t("BRA"),bot:t("TBD")},
+  RB:{col:"R_R16",dt:"7/6(月) 9:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
+  RC:{col:"R_R16",dt:"7/8(水) 1:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
+  RD:{col:"R_R16",dt:"7/8(水) 5:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
+  RQ1:{col:"R_QF",dt:"7/12(日) 6:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
+  RQ2:{col:"R_QF",dt:"7/12(日) 10:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
+  RSF:{col:"R_SF",dt:"7/16(木) 4:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
+  FINAL:{col:"CENTER",dt:"7/20(月) 4:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
+  THIRD:{col:"CENTER",dt:"7/19(日) 6:00",status:"upcoming",top:t("TBD"),bot:t("TBD")}
+};
+
+var NEDMAR = {
+  prob:{l:35,d:41,r:24},
+  stats:[
+    ["シュート",3,4],["枠内シュート",1,2],["ボール支配率","52%","48%"],
+    ["パス",218,186],["パス成功率","86%","90%"],["ファウル",6,5],
+    ["イエローカード",0,0],["レッドカード",0,0],["オフサイド",2,0],["コーナーキック",4,2]
+  ],
+  ned:[["GK","1","フェルブルッヘン"],["DF","4","ファン・ダイク"],["DF","5","アケ"],["DF","6","ファン・ヘッケ"],
+       ["DF","15","ファン・デ・フェン"],["DF","22","ダンフリース"],["MF","8","フラーフェンベルフ"],
+       ["MF","21","デ・ヨング"],["FW","11","ガクポ"],["FW","19","ブロビー"],["FW","24","サマーフィル"]],
+  mar:[["GK","1","ブヌ"],["DF","2","ハキミ"],["DF","3","マズラウィ"],["DF","14","ディオプ"],
+       ["DF","18","リアド"],["MF","6","ブアディ"],["MF","8","ウナヒ"],["MF","11","サイバリ"],
+       ["MF","23","エル・カンヌス"],["MF","24","エル・アイナウィ"],["FW","10","ディアス"]]
+};
+
+var CONN_L = [["L1","LA"],["L2","LA"],["L3","LB"],["L4","LB"],["L5","LC"],["L6","LC"],["L7","LD"],["L8","LD"],
+  ["LA","LQ1"],["LB","LQ1"],["LC","LQ2"],["LD","LQ2"],["LQ1","LSF"],["LQ2","LSF"],["LSF","FINAL"]];
+var CONN_R = [["R1","RA"],["R2","RA"],["R3","RB"],["R4","RB"],["R5","RC"],["R6","RC"],["R7","RD"],["R8","RD"],
+  ["RA","RQ1"],["RB","RQ1"],["RC","RQ2"],["RD","RQ2"],["RQ1","RSF"],["RQ2","RSF"],["RSF","FINAL"]];
+
+var COLS = [
+  {key:"L_R32",title:"ベスト32",ids:["L1","L2","L3","L4","L5","L6","L7","L8"]},
+  {key:"L_R16",title:"ベスト16",ids:["LA","LB","LC","LD"]},
+  {key:"L_QF",title:"準々決勝",ids:["LQ1","LQ2"]},
+  {key:"L_SF",title:"準決勝",ids:["LSF"]},
+  {key:"CENTER",title:"決勝",ids:["FINAL","THIRD"],center:true},
+  {key:"R_SF",title:"準決勝",ids:["RSF"]},
+  {key:"R_QF",title:"準々決勝",ids:["RQ1","RQ2"]},
+  {key:"R_R16",title:"ベスト16",ids:["RA","RB","RC","RD"]},
+  {key:"R_R32",title:"ベスト32",ids:["R1","R2","R3","R4","R5","R6","R7","R8"]}
+];
+
+var bracket = document.getElementById("bracket");
+function sc(s){ return (s.s===null||s.s===undefined)?"":s.s; }
+function sideRow(side, m, which){
+  var isWin = m.winner===which, isLose = m.winner && m.winner!==which;
+  var cls = isWin?"win":(isLose?"lose":"");
+  return '<div class="m-side '+cls+'"><div class="nm"><span class="flag">'+F[side.c]+
+    '</span><span class="t">'+N[side.c]+'</span>'+ovrBadge(side.c)+ownTag(side.c)+'</div><div class="sc">'+sc(side)+'</div></div>';
+}
+function matchCard(id){
+  var m=M[id], foot;
+  if(m.status==="live") foot='<div class="m-foot livef"><span class="live-dot"></span>LIVE '+(m.minute||"")+'</div>';
+  else if(m.status==="finished"){
+    var p=m.pen?'<span class="pen">PK '+m.pen.top+'-'+m.pen.bot+'</span>':'';
+    foot='<div class="m-foot finf">試合終了'+p+'</div>';
+  } else foot='<div class="m-foot">'+m.dt+'</div>';
+  return '<div class="match '+(m.status==='live'?'live':'')+'" id="m-'+id+'" onclick="openModal(\''+id+'\')">'+
+    sideRow(m.top,m,'top')+'<div class="m-divider"></div>'+sideRow(m.bot,m,'bot')+foot+'</div>';
+}
+
+COLS.forEach(function(c){
+  var col=document.createElement("div");
+  col.className="col"+(c.center?" center":"");
+  if(c.center){
+    col.innerHTML=
+      '<div class="champ-wrap">'+
+        '<span class="spark" style="top:10px;left:18px"></span>'+
+        '<span class="spark" style="top:24px;right:22px;animation-delay:.8s"></span>'+
+        '<span class="spark" style="bottom:14px;left:30px;animation-delay:1.4s"></span>'+
+        '<div class="champ-label">CHAMPION</div>'+
+        '<div class="trophy">🏆</div>'+
+        '<div class="round-title">決勝戦 '+M.FINAL.dt+'</div>'+
+        matchCard("FINAL").replace('class="match ','class="match final-card ')+
+      '</div>'+
+      '<div class="third"><div class="round-title">3位決定戦 '+M.THIRD.dt+'</div>'+matchCard("THIRD")+'</div>';
+  } else {
+    col.innerHTML='<div class="round-title">'+c.title+'</div>'+c.ids.map(matchCard).join("");
+  }
+  bracket.appendChild(col);
+});
+
+var svg=document.getElementById("lines");
+function drawLines(){
+  var b=bracket.getBoundingClientRect();
+  svg.setAttribute("width",bracket.scrollWidth); svg.setAttribute("height",bracket.scrollHeight);
+  var paths="";
+  function make(childId,parentId,side){
+    var ce=document.getElementById("m-"+childId), pe=document.getElementById("m-"+parentId);
+    if(!ce||!pe) return;
+    var c=ce.getBoundingClientRect(), p=pe.getBoundingClientRect();
+    var cy=c.top-b.top+c.height/2, py=p.top-b.top+p.height/2, cx,px;
+    if(side==="L"){cx=c.right-b.left; px=p.left-b.left;} else {cx=c.left-b.left; px=p.right-b.left;}
+    var mx=(cx+px)/2;
+    paths+='<polyline points="'+cx+','+cy+' '+mx+','+cy+' '+mx+','+py+' '+px+','+py+'" fill="none" stroke="#3a548c" stroke-width="1.6"/>';
+  }
+  CONN_L.forEach(function(a){make(a[0],a[1],"L");});
+  CONN_R.forEach(function(a){make(a[0],a[1],"R");});
+  svg.innerHTML=paths;
+}
+
+function todayStrip(){
+  var order=["L4","R2","L2","R3","L7","L8","R7","R4"];
+  document.getElementById("todayStrip").innerHTML=order.map(function(id){
+    var m=M[id], badge,bcls;
+    if(m.status==="live"){badge="● LIVE";bcls="b-live";}
+    else if(m.status==="finished"){badge="終了";bcls="b-fin";}
+    else{badge="試合前";bcls="b-up";}
+    var sct=function(s){return (s.s===null||s.s===undefined)?"–":s.s;};
+    return '<div class="tcard" onclick="openModal(\''+id+'\')">'+
+      '<span class="badge '+bcls+'">'+badge+'</span>'+
+      '<div class="trow"><div class="nm"><span class="flag">'+F[m.top.c]+'</span>'+N[m.top.c]+ownTag(m.top.c)+'</div><div class="sc">'+sct(m.top)+'</div></div>'+
+      '<div class="trow"><div class="nm"><span class="flag">'+F[m.bot.c]+'</span>'+N[m.bot.c]+ownTag(m.bot.c)+'</div><div class="sc">'+sct(m.bot)+'</div></div>'+
+      '<div class="meta">'+m.dt+(m.venue&&m.venue!=="-"?" ・ "+m.venue:"")+'</div></div>';
+  }).join("");
+}
+
+var overlay=document.getElementById("overlay"), modal=document.getElementById("modal");
+var EVIC={goal:"⚽",yellow:"🟨",red:"🟥",sub:"🔄",pen:"🥅",info:"•"};
+
+function timelineHTML(m){
+  if(!m.events||!m.events.length) return '<div class="empty">イベント情報はまだありません。</div>';
+  var rows=m.events.map(function(e){
+    var ic=EVIC[e.type]||"•";
+    var block='<div class="ev-ic">'+ic+'</div><div class="pl">'+(e.pl||"")+'</div><div class="nt">'+(e.nt||"")+'</div>';
+    if(e.type!=="goal"){
+      return '<div class="tl-ev '+e.type+'"><div class="side l"></div><div class="min">'+e.min+
+        '</div><div class="side r" style="text-align:center">'+block+'</div></div>';
+    }
+    var isL=(e.team==="top");
+    return '<div class="tl-ev goal"><div class="side l">'+(isL?block:"")+'</div><div class="min">'+e.min+
+      '</div><div class="side r">'+(isL?"":block)+'</div></div>';
+  }).join("");
+  return '<div class="tl">'+rows+'</div>'+
+    '<div style="text-align:center;font-size:10.5px;color:var(--muted);margin-top:10px">⚽得点 ・ 🟨🟥カード ・ 🔄交代（判明分のみ）</div>';
+}
+
+function openModal(id){
+  var m=M[id], statusTxt,statusCls;
+  if(m.status==="live"){statusTxt="● LIVE  "+(m.minute||"");statusCls="ss-live";}
+  else if(m.status==="finished"){statusTxt="試合終了";statusCls="ss-fin";}
+  else{statusTxt="キックオフ "+m.dt;statusCls="ss-up";}
+  var sct=function(s){return (s.s===null||s.s===undefined)?"–":s.s;};
+  var pen=m.pen?'<div class="pen-line">PK戦 '+m.pen.top+' - '+m.pen.bot+'（'+N[m.winner==='top'?m.top.c:m.bot.c]+' 勝利）</div>':'';
+
+  var d = m.detail==="NEDMAR"?NEDMAR:null;
+  var tabsDef=[];
+  if(m.events&&m.events.length) tabsDef.push(["timeline","試合経過"]);
+  if(d){tabsDef.push(["data","データ"]); tabsDef.push(["lineup","スタメン"]);}
+  tabsDef.push(["info","試合情報"]);
+
+  var panes="";
+  if(m.events&&m.events.length) panes+='<div class="tab-pane" id="pane-timeline">'+timelineHTML(m)+'</div>';
+  if(d){
+    var statRows=d.stats.map(function(row){
+      var lbl=row[0],l=row[1],r=row[2];
+      var ln=parseFloat(l),rn=parseFloat(r);
+      var hl=ln>rn?"hi-l":"",hr=rn>ln?"hi-r":"";
+      return '<div class="stat-row"><div class="v '+hl+'">'+l+'</div><div class="lbl">'+lbl+'</div><div class="v '+hr+'">'+r+'</div></div>';
+    }).join("");
+    panes+='<div class="tab-pane" id="pane-data">'+
+      '<div class="wp-title">ライブ勝率予測（90分）</div>'+
+      '<div class="wp-head"><span>'+N[m.top.c]+'<br><b style="color:var(--ned)">'+d.prob.l+'%</b></span>'+
+      '<span style="text-align:center">延長/引分<br><b style="color:var(--muted)">'+d.prob.d+'%</b></span>'+
+      '<span style="text-align:right">'+N[m.bot.c]+'<br><b style="color:var(--mar)">'+d.prob.r+'%</b></span></div>'+
+      '<div class="wp-bar"><i style="width:'+d.prob.l+'%;background:var(--ned)"></i><i style="width:'+d.prob.d+'%;background:#3a4a6b"></i><i style="width:'+d.prob.r+'%;background:var(--mar)"></i></div>'+
+      '<div style="margin-top:16px">'+statRows+'</div></div>';
+    var lu=function(arr){return arr.map(function(p){return '<div class="lu-row"><span class="pos">'+p[0]+'</span><span class="no">'+p[1]+'</span><span>'+p[2]+'</span></div>';}).join("");};
+    panes+='<div class="tab-pane" id="pane-lineup"><div class="lu">'+
+      '<div class="col-lu"><h4>'+F[m.top.c]+' '+N[m.top.c]+'</h4>'+lu(d.ned)+'</div>'+
+      '<div class="col-lu"><h4>'+F[m.bot.c]+' '+N[m.bot.c]+'</h4>'+lu(d.mar)+'</div></div></div>';
+  }
+  var infoInner;
+  if(m.status==="upcoming"){
+    var tbd=(m.top.c==="TBD"||m.bot.c==="TBD");
+    infoInner='<div class="info-line"><b>キックオフ</b><span>'+m.dt+'</span></div>'+
+      (m.venue&&m.venue!=="-"?'<div class="info-line"><b>会場</b><span>'+m.venue+'</span></div>':'')+
+      '<div class="empty">'+(tbd?"対戦カードは前ラウンドの結果待ちです。":"まもなくキックオフ。スタッツは試合開始後に表示されます。")+'</div>';
+  } else {
+    infoInner='<div class="info-line"><b>結果</b><span>'+N[m.top.c]+' '+sct(m.top)+' - '+sct(m.bot)+' '+N[m.bot.c]+'</span></div>'+
+      '<div class="info-line"><b>日時</b><sp
