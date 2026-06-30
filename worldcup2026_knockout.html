@@ -488,4 +488,52 @@ function openModal(id){
       '<div class="empty">'+(tbd?"対戦カードは前ラウンドの結果待ちです。":"まもなくキックオフ。スタッツは試合開始後に表示されます。")+'</div>';
   } else {
     infoInner='<div class="info-line"><b>結果</b><span>'+N[m.top.c]+' '+sct(m.top)+' - '+sct(m.bot)+' '+N[m.bot.c]+'</span></div>'+
-      '<div class="info-line"><b>日時</b><sp
+      '<div class="info-line"><b>日時</b><span>'+m.dt+'</span></div>'+
+      (m.venue&&m.venue!=="-"?'<div class="info-line"><b>会場</b><span>'+m.venue+'</span></div>':'')+
+      (m.winner?'<div class="info-line"><b>勝者</b><span>'+N[m.winner==='top'?m.top.c:m.bot.c]+' がベスト16進出</span></div>':
+        '<div class="info-line"><b>状況</b><span>'+(m.minute||"進行中")+'</span></div>');
+  }
+  panes+='<div class="tab-pane" id="pane-info"><div>'+infoInner+'</div></div>';
+
+  var tabsHTML = tabsDef.length>1 ? '<div class="tabs">'+tabsDef.map(function(td,i){
+      return '<div class="tab '+(i===0?'active':'')+'" onclick="switchTab(this,\''+td[0]+'\')">'+td[1]+'</div>';
+    }).join("")+'</div>' : '';
+
+  modal.innerHTML=
+    '<div class="modal-head"><div><h3>'+N[m.top.c]+' 対 '+N[m.bot.c]+'</h3>'+
+      '<div class="tag">ベスト32 ・ '+m.dt+'</div></div><button class="close" onclick="closeModal()">×</button></div>'+
+    '<div class="score-box"><div class="score-status '+statusCls+'">'+statusTxt+'</div>'+
+      '<div class="score-main">'+
+        '<div class="score-team"><div class="bigflag">'+F[m.top.c]+'</div><div class="tn">'+N[m.top.c]+'</div>'+ovrBadgeBig(m.top.c)+ownBig(m.top.c)+'</div>'+
+        '<div class="score-num">'+sct(m.top)+'</div><div class="score-sep">-</div><div class="score-num">'+sct(m.bot)+'</div>'+
+        '<div class="score-team"><div class="bigflag">'+F[m.bot.c]+'</div><div class="tn">'+N[m.bot.c]+'</div>'+ovrBadgeBig(m.bot.c)+ownBig(m.bot.c)+'</div>'+
+      '</div>'+pen+'</div>'+
+    tabsHTML+'<div class="tab-body">'+panes+'</div>'+
+    '<div class="modal-foot">時間はすべて日本時間 ／ データ取得: '+DATA_UPDATED+'</div>';
+  var firstPane=modal.querySelector(".tab-pane");
+  if(firstPane) firstPane.classList.add("active");
+  overlay.classList.add("open");
+}
+function switchTab(el,key){
+  var p=el.parentNode.querySelectorAll(".tab"); for(var i=0;i<p.length;i++)p[i].classList.remove("active");
+  el.classList.add("active");
+  var panes=modal.querySelectorAll(".tab-pane"); for(var j=0;j<panes.length;j++)panes[j].classList.remove("active");
+  var pane=modal.querySelector("#pane-"+key); if(pane) pane.classList.add("active");
+}
+function closeModal(){overlay.classList.remove("open");}
+document.addEventListener("keydown",function(e){if(e.key==="Escape")closeModal();});
+
+function setUpdated(){
+  document.getElementById("updatedBox").innerHTML="データ取得: "+DATA_UPDATED+"<br>表示更新: "+new Date().toLocaleString("ja-JP");
+}
+function manualUpdate(){ setUpdated(); drawLines(); }
+
+todayStrip();
+setUpdated();
+window.addEventListener("load",function(){setTimeout(drawLines,50);});
+window.addEventListener("resize",function(){setTimeout(drawLines,100);});
+document.querySelector(".bracket-wrap").addEventListener("scroll",drawLines);
+setTimeout(drawLines,150);
+</script>
+</body>
+</html>
