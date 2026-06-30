@@ -223,12 +223,18 @@
 
 <script>
 var DATA_UPDATED = "2026/6/30 (火) 13:05 取得";
-var F = {
-  GER:"🇩🇪",PAR:"🇵🇾",FRA:"🇫🇷",SWE:"🇸🇪",RSA:"🇿🇦",CAN:"🇨🇦",NED:"🇳🇱",MAR:"🇲🇦",
-  POR:"🇵🇹",CRO:"🇭🇷",ESP:"🇪🇸",ALG:"🇩🇿",USA:"🇺🇸",BIH:"🇧🇦",BEL:"🇧🇪",SEN:"🇸🇳",
-  BRA:"🇧🇷",JPN:"🇯🇵",CIV:"🇨🇮",NOR:"🇳🇴",MEX:"🇲🇽",ECU:"🇪🇨",ENG:"🏴",COD:"🇨🇩",
-  ARG:"🇦🇷",CPV:"🇨🇻",AUS:"🇦🇺",EGY:"🇪🇬",SUI:"🇨🇭",IRN:"🇮🇷",COL:"🇨🇴",GHA:"🇬🇭",TBD:"⬜"
+/* 国旗は flagcdn.com の公式国旗SVGを使用（全環境で正しく表示）。要ネット接続。 */
+var FC = {
+  GER:"de",PAR:"py",FRA:"fr",SWE:"se",RSA:"za",CAN:"ca",NED:"nl",MAR:"ma",
+  POR:"pt",CRO:"hr",ESP:"es",ALG:"dz",USA:"us",BIH:"ba",BEL:"be",SEN:"sn",
+  BRA:"br",JPN:"jp",CIV:"ci",NOR:"no",MEX:"mx",ECU:"ec",ENG:"gb-eng",COD:"cd",
+  ARG:"ar",CPV:"cv",AUS:"au",EGY:"eg",SUI:"ch",IRN:"ir",COL:"co",GHA:"gh"
 };
+var F = {};
+Object.keys(FC).forEach(function(k){
+  F[k]='<img src="https://flagcdn.com/'+FC[k]+'.svg" alt="'+k+'" loading="lazy" style="width:1.5em;height:1em;object-fit:cover;vertical-align:-.15em;border-radius:2px;box-shadow:0 1px 2px rgba(0,0,0,.4)">';
+});
+F.TBD='<span style="display:inline-block;width:1.5em;height:1em;vertical-align:-.15em;border-radius:2px;background:#33507f;opacity:.5"></span>';
 var N = {
   GER:"ドイツ",PAR:"パラグアイ",FRA:"フランス",SWE:"スウェーデン",RSA:"南アフリカ",CAN:"カナダ",
   NED:"オランダ",MAR:"モロッコ",POR:"ポルトガル",CRO:"クロアチア",ESP:"スペイン",ALG:"アルジェリア",
