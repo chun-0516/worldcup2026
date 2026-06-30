@@ -222,7 +222,7 @@
 <div class="overlay" id="overlay" onclick="if(event.target===this)closeModal()"><div class="modal" id="modal"></div></div>
 
 <script>
-var DATA_UPDATED = "2026/6/30 (火) 17:32 取得";
+var DATA_UPDATED = "2026/7/1 (水) 03:25 取得";
 /* 国旗は flagcdn.com の公式国旗SVGを使用（全環境で正しく表示）。要ネット接続。 */
 var FC = {
   GER:"de",PAR:"py",FRA:"fr",SWE:"se",RSA:"za",CAN:"ca",NED:"nl",MAR:"ma",
@@ -306,14 +306,19 @@ var M = {
         {min:"56'",type:"goal",team:"top",pl:"カゼミーロ",nt:"ブラジル同点"},
         {min:"90+5'",type:"goal",team:"top",pl:"マルチネッリ",nt:"土壇場の逆転弾"}
       ]},
-  R2:{col:"R_R32",dt:"7/1(水) 2:00",venue:"AT&Tスタジアム",status:"upcoming",top:t("CIV"),bot:t("NOR")},
+  R2:{col:"R_R32",dt:"7/1(水) 2:00",venue:"AT&Tスタジアム",status:"finished",top:t("CIV",1),bot:t("NOR",2),winner:"bot",
+      events:[
+        {min:"39'",type:"goal",team:"bot",pl:"アントニオ・ヌサ",nt:"エーデゴール アシスト／ノルウェー先制"},
+        {min:"74'",type:"goal",team:"top",pl:"アマド・ディアロ",nt:"ペペとのワンツーから同点弾"},
+        {min:"86'",type:"goal",team:"bot",pl:"ハーランド",nt:"終盤に決勝点／ノルウェー初のKO勝利"}
+      ]},
   R3:{col:"R_R32",dt:"7/1(水) 10:00",venue:"エスタディオ・アステカ",status:"upcoming",top:t("MEX"),bot:t("ECU")},
   R4:{col:"R_R32",dt:"7/2(木) 1:00",venue:"-",status:"upcoming",top:t("ENG"),bot:t("COD")},
   R5:{col:"R_R32",dt:"7/4(土) 7:00",venue:"-",status:"upcoming",top:t("ARG"),bot:t("CPV")},
   R6:{col:"R_R32",dt:"7/4(土) 3:00",venue:"-",status:"upcoming",top:t("AUS"),bot:t("EGY")},
   R7:{col:"R_R32",dt:"7/3(金) 12:00",venue:"-",status:"upcoming",top:t("SUI"),bot:t("IRN")},
   R8:{col:"R_R32",dt:"7/4(土) 10:30",venue:"-",status:"upcoming",top:t("COL"),bot:t("GHA")},
-  RA:{col:"R_R16",dt:"7/6(月) 5:00",status:"upcoming",top:t("BRA"),bot:t("TBD")},
+  RA:{col:"R_R16",dt:"7/6(月) 5:00",status:"upcoming",top:t("BRA"),bot:t("NOR")},
   RB:{col:"R_R16",dt:"7/6(月) 9:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
   RC:{col:"R_R16",dt:"7/8(水) 1:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
   RD:{col:"R_R16",dt:"7/8(水) 5:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
