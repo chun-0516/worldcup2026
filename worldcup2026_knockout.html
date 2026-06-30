@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>FIFA ワールドカップ 2026 ノックアウト速報＆トーナメント表</title>
 <style>
   :root{
@@ -537,7 +540,10 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape")closeModal()
 function setUpdated(){
   document.getElementById("updatedBox").innerHTML="データ取得: "+DATA_UPDATED+"<br>表示更新: "+new Date().toLocaleString("ja-JP");
 }
-function manualUpdate(){ setUpdated(); drawLines(); }
+function manualUpdate(){
+  /* キャッシュを無視してサーバーから最新HTMLを取り直す（スマホ対応） */
+  location.replace(location.pathname + "?t=" + Date.now());
+}
 
 todayStrip();
 setUpdated();
