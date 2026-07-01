@@ -237,7 +237,7 @@
 <div class="toast-wrap" id="toastWrap"></div>
 
 <script>
-var DATA_UPDATED = "2026/7/1 (水) 13:11 取得";
+var DATA_UPDATED = "2026/7/1 (水) 16:47 取得";
 /* 国旗は flagcdn.com の公式国旗SVGを使用（全環境で正しく表示）。要ネット接続。 */
 var FC = {
   GER:"de",PAR:"py",FRA:"fr",SWE:"se",RSA:"za",CAN:"ca",NED:"nl",MAR:"ma",
@@ -258,7 +258,7 @@ var N = {
   ARG:"アルゼンチン",CPV:"カーボベルデ",AUS:"オーストラリア",EGY:"エジプト",SUI:"スイス",IRN:"イラン",
   COL:"コロンビア",GHA:"ガーナ",TBD:"勝者待ち"
 };
-/* 各国の担当者(オーナー)。勝ち上がると担当者も次ラウンドに自動で追従する。 */
+/* 各国の担当者（オーナー）。勝ち上がると担当者も次ラウンドに自動で追従する。 */
 var OWN = {
   GER:"やまと",PAR:"しょうえい",FRA:"ちゅん",SWE:"だいき",RSA:"だいち",CAN:"りょうた",
   NED:"ゆめと",MAR:"にしれん",POR:"まっぽ",CRO:"トーマス",ESP:"あみ",ALG:"黒木",
@@ -271,6 +271,10 @@ function ownTag(c){var o=OWN[c]; return o?'<span class="own">'+o+'</span>':'';}
 function ownBig(c){var o=OWN[c]; return o?'<div class="own-big">担当 '+o+'</div>':'';}
 function t(c,s){return {c:c, s:(s===undefined?null:s)};}
 
+/* チーム戦力 OVR（総合値・0-100スケール）
+   算出根拠: FIFA世界ランキング ポイント（2026/6/11更新）を基準に
+   0-100へ線形換算し、スカッドの選手層・直近の戦力を加味して微調整。
+   出典: FIFA/Coca-Cola Men's World Ranking (2026年6月). */
 var OVR = {
   ARG:91, ESP:91, FRA:90, ENG:89, BRA:88, POR:87, NED:86, MAR:86, BEL:86,
   GER:85, CRO:85, COL:84, MEX:84, SEN:83, USA:83, JPN:83, SUI:82, IRN:81,
@@ -296,7 +300,10 @@ var M = {
         {min:"74'",type:"goal",team:"top",pl:"ムバッペ",nt:"この試合2点目／大会通算6得点でメッシに並ぶ"}
       ]},
   L3:{col:"L_R32",dt:"6/29(月)",venue:"SoFiスタジアム",status:"finished",top:t("RSA",0),bot:t("CAN",1),winner:"bot",
-      events:[{min:"90+2'",type:"goal",team:"bot",pl:"エウスタキオ",nt:"ロスタイムの劇的決勝点"}]},
+      events:[
+        {min:"67'",type:"yellow",team:"bot",pl:"シガー",nt:"危険なプレーで警告"},
+        {min:"90+2'",type:"goal",team:"bot",pl:"エウスタキオ",nt:"ロスタイムの劇的決勝点"}
+      ]},
   L4:{col:"L_R32",dt:"6/30(火) 10:00",venue:"エスタディオ モンテレイ",status:"finished",
       top:t("NED",1),bot:t("MAR",1),pen:{top:2,bot:3},winner:"bot",detail:"NEDMAR",
       events:[
@@ -320,12 +327,16 @@ var M = {
   R1:{col:"R_R32",dt:"6/29(月)",venue:"ヒューストン・スタジアム",status:"finished",top:t("BRA",2),bot:t("JPN",1),winner:"top",
       events:[
         {min:"29'",type:"goal",team:"bot",pl:"佐野 海舟",nt:"日本が先制"},
+        {min:"前半",type:"yellow",team:"bot",pl:"佐野 海舟",nt:"警告"},
+        {min:"45+1'",type:"yellow",team:"bot",pl:"鎌田 大地",nt:"前半終了間際に警告"},
         {min:"56'",type:"goal",team:"top",pl:"カゼミーロ",nt:"ブラジル同点"},
+        {min:"後半",type:"yellow",team:"bot",pl:"鈴木 淳之介",nt:"ダニーロを倒して警告"},
         {min:"90+5'",type:"goal",team:"top",pl:"マルチネッリ",nt:"土壇場の逆転弾"}
       ]},
   R2:{col:"R_R32",dt:"7/1(水) 2:00",venue:"AT&Tスタジアム",status:"finished",top:t("CIV",1),bot:t("NOR",2),winner:"bot",
       events:[
         {min:"39'",type:"goal",team:"bot",pl:"アントニオ・ヌサ",nt:"エーデゴール アシスト／ノルウェー先制"},
+        {min:"45+2'",type:"yellow",team:"bot",pl:"アントニオ・ヌサ",nt:"前半終了間際に警告"},
         {min:"74'",type:"goal",team:"top",pl:"アマド・ディアロ",nt:"ペペとのワンツーから同点弾"},
         {min:"86'",type:"goal",team:"bot",pl:"ハーランド",nt:"終盤に決勝点／ノルウェー初のKO勝利"}
       ]},
@@ -335,6 +346,10 @@ var M = {
         {min:"開始前",type:"info",pl:"落雷のため試合開始が遅延",nt:"当初22:00(現地)予定→荒天のため後ろ倒し。選手はピッチに再入場し再開待ち"},
         {min:"22'",type:"goal",team:"top",pl:"キニョネス",nt:"メキシコ先制"},
         {min:"31'",type:"goal",team:"top",pl:"ヒメネス",nt:"キニョネスのアシストでメキシコ2点目"},
+        {min:"45'",type:"yellow",team:"bot",pl:"A.フランコ",nt:"危険なプレーで警告"},
+        {min:"90+2'",type:"yellow",team:"bot",pl:"K.パエス",nt:"危険なプレーで警告"},
+        {min:"90+8'",type:"yellow",team:"bot",pl:"M.カイセド",nt:"危険なプレーで警告"},
+        {min:"90+9'",type:"red",team:"bot",pl:"ヒンカピエ",nt:"荒れた終盤に一発退場"},
         {min:"試合終了",type:"info",pl:"メキシコが2-0で勝利",nt:"ベスト16でイングランド×DRコンゴの勝者と対戦"}
       ]},
   R4:{col:"R_R32",dt:"7/2(木) 1:00",venue:"-",status:"upcoming",top:t("ENG"),bot:t("COD")},
@@ -569,6 +584,7 @@ function setUpdated(){
   document.getElementById("updatedBox").innerHTML="データ取得: "+DATA_UPDATED+"<br>表示更新: "+new Date().toLocaleString("ja-JP");
 }
 
+/* ===== 共通: リモート(GitHub Pages)の最新データ取得時刻を確認 ===== */
 var UPDATE_RE = /var DATA_UPDATED = "([^"]*)"/;
 function fetchRemoteDataUpdated(){
   return fetch(location.pathname + "?t=" + Date.now(), {cache:"no-store"})
@@ -576,6 +592,7 @@ function fetchRemoteDataUpdated(){
     .then(function(html){ var mm = html.match(UPDATE_RE); return mm ? mm[1] : null; });
 }
 
+/* ===== 手動「更新」ボタン: 反映待ち表示 ===== */
 function manualUpdate(){
   var btn = document.getElementById("updateBtn");
   btn.classList.add("checking");
@@ -596,6 +613,7 @@ function manualUpdate(){
   });
 }
 
+/* ===== トースト通知 ===== */
 function showToast(html){
   var w = document.getElementById("toastWrap");
   var el = document.createElement("div");
@@ -605,6 +623,7 @@ function showToast(html){
   setTimeout(function(){ el.remove(); }, 5200);
 }
 
+/* ===== 前回訪問時との差分検知 → 新着カードのハイライト＆トースト ===== */
 var SNAP_KEY = "wc_snapshot_v1";
 function buildSnapshot(){
   var snap = {};
@@ -649,6 +668,7 @@ function flashUpdatedCards(){
   });
 }
 
+/* ===== ライブ中は自動ポーリングして差分があれば自動更新 ===== */
 var pendingReload = false;
 function doAutoReload(){
   if(overlay.classList.contains("open")){
