@@ -225,7 +225,7 @@
 <div class="overlay" id="overlay" onclick="if(event.target===this)closeModal()"><div class="modal" id="modal"></div></div>
 
 <script>
-var DATA_UPDATED = "2026/7/1 (水) 10:35 取得";
+var DATA_UPDATED = "2026/7/1 (水) 13:11 取得";
 /* 国旗は flagcdn.com の公式国旗SVGを使用（全環境で正しく表示）。要ネット接続。 */
 var FC = {
   GER:"de",PAR:"py",FRA:"fr",SWE:"se",RSA:"za",CAN:"ca",NED:"nl",MAR:"ma",
@@ -321,16 +321,21 @@ var M = {
         {min:"74'",type:"goal",team:"top",pl:"アマド・ディアロ",nt:"ペペとのワンツーから同点弾"},
         {min:"86'",type:"goal",team:"bot",pl:"ハーランド",nt:"終盤に決勝点／ノルウェー初のKO勝利"}
       ]},
-  R3:{col:"R_R32",dt:"7/1(水) 10:00",venue:"エスタディオ・アステカ",status:"live",
-      top:t("MEX",0),bot:t("ECU",0),minute:"開始遅延中（まもなく再開）",
-      events:[{min:"開始前",type:"info",pl:"落雷のため試合開始が遅延",nt:"当初22:00(現地)予定→荒天のため後ろ倒し。選手はピッチに再入場し再開待ち（日本時間11時頃キックオフ見込み）"}]},
+  R3:{col:"R_R32",dt:"7/1(水) 10:00",venue:"エスタディオ・アステカ",status:"finished",
+      top:t("MEX",2),bot:t("ECU",0),winner:"top",
+      events:[
+        {min:"開始前",type:"info",pl:"落雷のため試合開始が遅延",nt:"当初22:00(現地)予定→荒天のため後ろ倒し。選手はピッチに再入場し再開待ち"},
+        {min:"22'",type:"goal",team:"top",pl:"キニョネス",nt:"メキシコ先制"},
+        {min:"31'",type:"goal",team:"top",pl:"ヒメネス",nt:"キニョネスのアシストでメキシコ2点目"},
+        {min:"試合終了",type:"info",pl:"メキシコが2-0で勝利",nt:"ベスト16でイングランド×DRコンゴの勝者と対戦"}
+      ]},
   R4:{col:"R_R32",dt:"7/2(木) 1:00",venue:"-",status:"upcoming",top:t("ENG"),bot:t("COD")},
   R5:{col:"R_R32",dt:"7/4(土) 7:00",venue:"-",status:"upcoming",top:t("ARG"),bot:t("CPV")},
   R6:{col:"R_R32",dt:"7/4(土) 3:00",venue:"-",status:"upcoming",top:t("AUS"),bot:t("EGY")},
   R7:{col:"R_R32",dt:"7/3(金) 12:00",venue:"-",status:"upcoming",top:t("SUI"),bot:t("IRN")},
   R8:{col:"R_R32",dt:"7/4(土) 10:30",venue:"-",status:"upcoming",top:t("COL"),bot:t("GHA")},
   RA:{col:"R_R16",dt:"7/6(月) 5:00",status:"upcoming",top:t("BRA"),bot:t("NOR")},
-  RB:{col:"R_R16",dt:"7/6(月) 9:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
+  RB:{col:"R_R16",dt:"7/6(月) 9:00",status:"upcoming",top:t("MEX"),bot:t("TBD")},
   RC:{col:"R_R16",dt:"7/8(水) 1:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
   RD:{col:"R_R16",dt:"7/8(水) 5:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
   RQ1:{col:"R_QF",dt:"7/12(日) 6:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
@@ -562,3 +567,4 @@ setTimeout(drawLines,150);
 </script>
 </body>
 </html>
+         
