@@ -225,7 +225,7 @@
 <div class="overlay" id="overlay" onclick="if(event.target===this)closeModal()"><div class="modal" id="modal"></div></div>
 
 <script>
-var DATA_UPDATED = "2026/7/1 (水) 03:25 取得";
+var DATA_UPDATED = "2026/7/1 (水) 08:33 取得";
 /* 国旗は flagcdn.com の公式国旗SVGを使用（全環境で正しく表示）。要ネット接続。 */
 var FC = {
   GER:"de",PAR:"py",FRA:"fr",SWE:"se",RSA:"za",CAN:"ca",NED:"nl",MAR:"ma",
@@ -280,7 +280,13 @@ var M = {
         {min:"後半",type:"goal",team:"top",pl:"ハフェルツ",nt:"ヴィルツのクロスをヘッドで同点"},
         {min:"PK",type:"pen",team:"bot",pl:"PK戦 4-3",nt:"カナレが決勝PK／GKギルが2セーブ"}
       ]},
-  L2:{col:"L_R32",dt:"7/1(水) 6:00",venue:"メットライフ・スタジアム",status:"upcoming",top:t("FRA"),bot:t("SWE")},
+  L2:{col:"L_R32",dt:"7/1(水) 6:00",venue:"メットライフ・スタジアム",status:"finished",
+      top:t("FRA",3),bot:t("SWE",0),winner:"top",
+      events:[
+        {min:"45'",type:"goal",team:"top",pl:"ムバッペ",nt:"前半終了間際にフランス先制"},
+        {min:"53'",type:"goal",team:"top",pl:"バルコラ",nt:"フランス追加点"},
+        {min:"74'",type:"goal",team:"top",pl:"ムバッペ",nt:"この試合2点目／大会通算6得点でメッシに並ぶ"}
+      ]},
   L3:{col:"L_R32",dt:"6/29(月)",venue:"SoFiスタジアム",status:"finished",top:t("RSA",0),bot:t("CAN",1),winner:"bot",
       events:[{min:"90+2'",type:"goal",team:"bot",pl:"エウスタキオ",nt:"ロスタイムの劇的決勝点"}]},
   L4:{col:"L_R32",dt:"6/30(火) 10:00",venue:"エスタディオ モンテレイ",status:"finished",
@@ -296,7 +302,7 @@ var M = {
   L6:{col:"L_R32",dt:"7/3(金) 4:00",venue:"-",status:"upcoming",top:t("ESP"),bot:t("ALG")},
   L7:{col:"L_R32",dt:"7/2(木) 9:00",venue:"-",status:"upcoming",top:t("USA"),bot:t("BIH")},
   L8:{col:"L_R32",dt:"7/2(木) 5:00",venue:"-",status:"upcoming",top:t("BEL"),bot:t("SEN")},
-  LA:{col:"L_R16",dt:"7/5(日) 6:00",status:"upcoming",top:t("PAR"),bot:t("TBD")},
+  LA:{col:"L_R16",dt:"7/5(日) 6:00",status:"upcoming",top:t("PAR"),bot:t("FRA")},
   LB:{col:"L_R16",dt:"7/5(日) 2:00",status:"upcoming",top:t("CAN"),bot:t("MAR")},
   LC:{col:"L_R16",dt:"7/7(火) 4:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
   LD:{col:"L_R16",dt:"7/7(火) 9:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
