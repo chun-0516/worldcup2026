@@ -237,7 +237,7 @@
 <div class="toast-wrap" id="toastWrap"></div>
 
 <script>
-var DATA_UPDATED = "2026/7/1 (水) 16:47 取得";
+var DATA_UPDATED = "2026/7/2 (木) 11:07 取得";
 /* 国旗は flagcdn.com の公式国旗SVGを使用（全環境で正しく表示）。要ネット接続。 */
 var FC = {
   GER:"de",PAR:"py",FRA:"fr",SWE:"se",RSA:"za",CAN:"ca",NED:"nl",MAR:"ma",
@@ -315,12 +315,29 @@ var M = {
       ]},
   L5:{col:"L_R32",dt:"7/3(金) 8:00",venue:"-",status:"upcoming",top:t("POR"),bot:t("CRO")},
   L6:{col:"L_R32",dt:"7/3(金) 4:00",venue:"-",status:"upcoming",top:t("ESP"),bot:t("ALG")},
-  L7:{col:"L_R32",dt:"7/2(木) 9:00",venue:"-",status:"upcoming",top:t("USA"),bot:t("BIH")},
-  L8:{col:"L_R32",dt:"7/2(木) 5:00",venue:"-",status:"upcoming",top:t("BEL"),bot:t("SEN")},
+  L7:{col:"L_R32",dt:"7/2(木) 9:00",venue:"サンフランシスコ・ベイエリア・スタジアム",status:"finished",
+      top:t("USA",2),bot:t("BIH",0),winner:"top",
+      events:[
+        {min:"45'",type:"goal",team:"top",pl:"フォラリン・バログン",nt:"こぼれ球をGKヴァシリの股下に流し込みアメリカ先制"},
+        {min:"64'",type:"red",team:"top",pl:"フォラリン・バログン",nt:"ムハレモヴィッチの足を踏みVAR確認の末に一発退場／アメリカは10人に"},
+        {min:"81'",type:"yellow",team:"bot",pl:"ステファン・ラデリッチ",nt:"ペナルティエリア際でファウルし警告／FKを与える"},
+        {min:"82'",type:"goal",team:"top",pl:"マリク・ティルマン",nt:"直接FKを叩き込みアメリカが2点目／10人ながらリード拡大"}
+      ]},
+  L8:{col:"L_R32",dt:"7/2(木) 5:00",venue:"ルーメン・フィールド",status:"finished",
+      top:t("BEL",3),bot:t("SEN",2),winner:"top",
+      events:[
+        {min:"24'",type:"goal",team:"bot",pl:"アビブ・ジアラ",nt:"セネガル先制"},
+        {min:"51'",type:"goal",team:"bot",pl:"イスマイラ・サール",nt:"セネガルが2点差に"},
+        {min:"64'",type:"yellow",team:"top",pl:"デドリック・ボヤタ",nt:"警告"},
+        {min:"67'",type:"yellow",team:"bot",pl:"ラミン・カマラ",nt:"警告"},
+        {min:"86'",type:"goal",team:"top",pl:"ロメル・ルカク",nt:"ベルギーが1点差に詰め寄る"},
+        {min:"89'",type:"goal",team:"top",pl:"ユリ・ティーレマンス",nt:"終了間際の同点弾で延長へ"},
+        {min:"120+4'",type:"pen",team:"top",pl:"ユリ・ティーレマンス",nt:"延長終了間際、VARで得たPKを決めてベルギーが逆転勝利"}
+      ]},
   LA:{col:"L_R16",dt:"7/5(日) 6:00",status:"upcoming",top:t("PAR"),bot:t("FRA")},
   LB:{col:"L_R16",dt:"7/5(日) 2:00",status:"upcoming",top:t("CAN"),bot:t("MAR")},
   LC:{col:"L_R16",dt:"7/7(火) 4:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
-  LD:{col:"L_R16",dt:"7/7(火) 9:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
+  LD:{col:"L_R16",dt:"7/7(火) 9:00",status:"upcoming",top:t("USA"),bot:t("BEL")},
   LQ1:{col:"L_QF",dt:"7/10(金) 5:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
   LQ2:{col:"L_QF",dt:"7/11(土) 4:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
   LSF:{col:"L_SF",dt:"7/15(水) 4:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
@@ -352,13 +369,20 @@ var M = {
         {min:"90+9'",type:"red",team:"bot",pl:"ヒンカピエ",nt:"荒れた終盤に一発退場"},
         {min:"試合終了",type:"info",pl:"メキシコが2-0で勝利",nt:"ベスト16でイングランド×DRコンゴの勝者と対戦"}
       ]},
-  R4:{col:"R_R32",dt:"7/2(木) 1:00",venue:"-",status:"upcoming",top:t("ENG"),bot:t("COD")},
+  R4:{col:"R_R32",dt:"7/2(木) 1:00",venue:"メルセデス・ベンツ・スタジアム",status:"finished",top:t("ENG",2),bot:t("COD",1),winner:"top",
+      events:[
+        {min:"7'",type:"goal",team:"bot",pl:"ブライアン・シペンガ",nt:"ムバンバのクロスに合わせDRコンゴが先制"},
+        {min:"19'",type:"yellow",team:"top",pl:"ジュード・ベリンガム",nt:"警告"},
+        {min:"28'",type:"yellow",team:"bot",pl:"ノア・サディキ",nt:"警告"},
+        {min:"75'",type:"goal",team:"top",pl:"ハリー・ケイン",nt:"ゴードンのクロスにヘッドで合わせ同点"},
+        {min:"86'",type:"goal",team:"top",pl:"ハリー・ケイン",nt:"ゴードンのアシストで勝ち越し弾／イングランドが逆転勝利"}
+      ]},
   R5:{col:"R_R32",dt:"7/4(土) 7:00",venue:"-",status:"upcoming",top:t("ARG"),bot:t("CPV")},
   R6:{col:"R_R32",dt:"7/4(土) 3:00",venue:"-",status:"upcoming",top:t("AUS"),bot:t("EGY")},
   R7:{col:"R_R32",dt:"7/3(金) 12:00",venue:"-",status:"upcoming",top:t("SUI"),bot:t("IRN")},
   R8:{col:"R_R32",dt:"7/4(土) 10:30",venue:"-",status:"upcoming",top:t("COL"),bot:t("GHA")},
   RA:{col:"R_R16",dt:"7/6(月) 5:00",status:"upcoming",top:t("BRA"),bot:t("NOR")},
-  RB:{col:"R_R16",dt:"7/6(月) 9:00",status:"upcoming",top:t("MEX"),bot:t("TBD")},
+  RB:{col:"R_R16",dt:"7/6(月) 9:00",status:"upcoming",top:t("MEX"),bot:t("ENG")},
   RC:{col:"R_R16",dt:"7/8(水) 1:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
   RD:{col:"R_R16",dt:"7/8(水) 5:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
   RQ1:{col:"R_QF",dt:"7/12(日) 6:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
