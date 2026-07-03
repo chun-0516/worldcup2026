@@ -237,7 +237,7 @@
 <div class="toast-wrap" id="toastWrap"></div>
 
 <script>
-var DATA_UPDATED = "2026/7/3 (金) 13:33 取得";
+var DATA_UPDATED = "2026/7/3 (金) 13:52 取得";
 /* 国旗は flagcdn.com の公式国旗SVGを使用（全環境で正しく表示）。要ネット接続。 */
 var FC = {
   GER:"de",PAR:"py",FRA:"fr",SWE:"se",RSA:"za",CAN:"ca",NED:"nl",MAR:"ma",
@@ -392,8 +392,8 @@ var M = {
       ]},
   R5:{col:"R_R32",dt:"7/4(土) 7:00",venue:"-",status:"upcoming",top:t("ARG"),bot:t("CPV")},
   R6:{col:"R_R32",dt:"7/4(土) 3:00",venue:"-",status:"upcoming",top:t("AUS"),bot:t("EGY")},
-  R7:{col:"R_R32",dt:"7/3(金) 12:00",venue:"BCプレイス",status:"live",minute:"後半 74分",
-      top:t("SUI",2),bot:t("ALG",0),
+  R7:{col:"R_R32",dt:"7/3(金) 12:00",venue:"BCプレイス",status:"finished",
+      top:t("SUI",2),bot:t("ALG",0),winner:"top",
       events:[
         {min:"10'",type:"goal",team:"top",pl:"ブレエル・エンボロ",nt:"マンザンビの独走からの折り返しを詰めてスイス先制"},
         {min:"46'",type:"goal",team:"top",pl:"ダン・ンドイェ",nt:"アルジェリア守備の乱れを突き右足シュートを流し込みスイスが2点差"}
@@ -402,7 +402,7 @@ var M = {
   RA:{col:"R_R16",dt:"7/6(月) 5:00",status:"upcoming",top:t("BRA"),bot:t("NOR")},
   RB:{col:"R_R16",dt:"7/6(月) 9:00",status:"upcoming",top:t("MEX"),bot:t("ENG")},
   RC:{col:"R_R16",dt:"7/8(水) 1:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
-  RD:{col:"R_R16",dt:"7/8(水) 5:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
+  RD:{col:"R_R16",dt:"7/8(水) 5:00",status:"upcoming",top:t("SUI"),bot:t("TBD")},
   RQ1:{col:"R_QF",dt:"7/12(日) 6:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
   RQ2:{col:"R_QF",dt:"7/12(日) 10:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
   RSF:{col:"R_SF",dt:"7/16(木) 4:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
@@ -740,3 +740,4 @@ setTimeout(drawLines,150);
 </script>
 </body>
 </html>
+     
