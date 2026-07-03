@@ -237,7 +237,7 @@
 <div class="toast-wrap" id="toastWrap"></div>
 
 <script>
-var DATA_UPDATED = "2026/7/3 (金) 11:00 取得";
+var DATA_UPDATED = "2026/7/3 (金) 13:33 取得";
 /* 国旗は flagcdn.com の公式国旗SVGを使用（全環境で正しく表示）。要ネット接続。 */
 var FC = {
   GER:"de",PAR:"py",FRA:"fr",SWE:"se",RSA:"za",CAN:"ca",NED:"nl",MAR:"ma",
@@ -261,11 +261,11 @@ var N = {
 /* 各国の担当者（オーナー）。勝ち上がると担当者も次ラウンドに自動で追従する。 */
 var OWN = {
   GER:"やまと",PAR:"しょうえい",FRA:"ちゅん",SWE:"だいき",RSA:"だいち",CAN:"りょうた",
-  NED:"ゆめと",MAR:"にしれん",POR:"まっぽ",CRO:"トーマス",ESP:"あみ",ALG:"黒木",
+  NED:"ゆめと",MAR:"にしれん",POR:"まっぽ",CRO:"トーマス",ESP:"あみ",ALG:"こうせい",
   USA:"だいと",BIH:"れんた",BEL:"けんと",SEN:"つばさ",BRA:"のすけ",JPN:"内野",
   CIV:"ゆうと",NOR:"れん",MEX:"飛竜",ECU:"なおき",ENG:"あつき",COD:"りょうが",
   ARG:"しずく",CPV:"マイキー",AUS:"かおる",EGY:"けいご",SUI:"ちひろ",IRN:"こうせい",
-  COL:"あきら",GHA:"けいと",TBD:"",AUT:"こうせい"
+  COL:"あきら",GHA:"けいと",TBD:"",AUT:"黒木"
 };
 function ownTag(c){var o=OWN[c]; return o?'<span class="own">'+o+'</span>':'';}
 function ownBig(c){var o=OWN[c]; return o?'<div class="own-big">担当 '+o+'</div>':'';}
@@ -392,7 +392,12 @@ var M = {
       ]},
   R5:{col:"R_R32",dt:"7/4(土) 7:00",venue:"-",status:"upcoming",top:t("ARG"),bot:t("CPV")},
   R6:{col:"R_R32",dt:"7/4(土) 3:00",venue:"-",status:"upcoming",top:t("AUS"),bot:t("EGY")},
-  R7:{col:"R_R32",dt:"7/3(金) 12:00",venue:"BCプレイス",status:"upcoming",top:t("SUI"),bot:t("ALG")},
+  R7:{col:"R_R32",dt:"7/3(金) 12:00",venue:"BCプレイス",status:"live",minute:"後半 74分",
+      top:t("SUI",2),bot:t("ALG",0),
+      events:[
+        {min:"10'",type:"goal",team:"top",pl:"ブレエル・エンボロ",nt:"マンザンビの独走からの折り返しを詰めてスイス先制"},
+        {min:"46'",type:"goal",team:"top",pl:"ダン・ンドイェ",nt:"アルジェリア守備の乱れを突き右足シュートを流し込みスイスが2点差"}
+      ]},
   R8:{col:"R_R32",dt:"7/4(土) 10:30",venue:"-",status:"upcoming",top:t("COL"),bot:t("GHA")},
   RA:{col:"R_R16",dt:"7/6(月) 5:00",status:"upcoming",top:t("BRA"),bot:t("NOR")},
   RB:{col:"R_R16",dt:"7/6(月) 9:00",status:"upcoming",top:t("MEX"),bot:t("ENG")},
