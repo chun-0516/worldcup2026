@@ -237,7 +237,7 @@
 <div class="toast-wrap" id="toastWrap"></div>
 
 <script>
-var DATA_UPDATED = "2026/7/3 (金) 04:15 取得";
+var DATA_UPDATED = "2026/7/3 (金) 10:20 取得";
 /* 国旗は flagcdn.com の公式国旗SVGを使用（全環境で正しく表示）。要ネット接続。 */
 var FC = {
   GER:"de",PAR:"py",FRA:"fr",SWE:"se",RSA:"za",CAN:"ca",NED:"nl",MAR:"ma",
@@ -258,7 +258,7 @@ var N = {
   ARG:"アルゼンチン",CPV:"カーボベルデ",AUS:"オーストラリア",EGY:"エジプト",SUI:"スイス",IRN:"イラン",
   COL:"コロンビア",GHA:"ガーナ",TBD:"勝者待ち"
 };
-/* 各国の担当者（オーナー）。勝ち上がると担当者も次ラウンドに自動で追従する。 */
+/* 各国の担当者(オーナー)。勝ち上がると担当者も次ラウンドに自動で追従する。 */
 var OWN = {
   GER:"やまと",PAR:"しょうえい",FRA:"ちゅん",SWE:"だいき",RSA:"だいち",CAN:"りょうた",
   NED:"ゆめと",MAR:"にしれん",POR:"まっぽ",CRO:"トーマス",ESP:"あみ",ALG:"黒木",
@@ -271,8 +271,8 @@ function ownTag(c){var o=OWN[c]; return o?'<span class="own">'+o+'</span>':'';}
 function ownBig(c){var o=OWN[c]; return o?'<div class="own-big">担当 '+o+'</div>':'';}
 function t(c,s){return {c:c, s:(s===undefined?null:s)};}
 
-/* チーム戦力 OVR（総合値・0-100スケール）
-   算出根拠: FIFA世界ランキング ポイント（2026/6/11更新）を基準に
+/* チーム戦力 OVR(総合値・0-100スケール)
+   算出根拠: FIFA世界ランキング ポイント(2026/6/11更新)を基準に
    0-100へ線形換算し、スカッドの選手層・直近の戦力を加味して微調整。
    出典: FIFA/Coca-Cola Men's World Ranking (2026年6月). */
 var OVR = {
@@ -290,14 +290,14 @@ var M = {
       events:[
         {min:"前半",type:"goal",team:"bot",pl:"エンシソ",nt:"パラグアイ先制"},
         {min:"後半",type:"goal",team:"top",pl:"ハフェルツ",nt:"ヴィルツのクロスをヘッドで同点"},
-        {min:"PK",type:"pen",team:"bot",pl:"PK戦 4-3",nt:"カナレが決勝PK／GKギルが2セーブ"}
+        {min:"PK",type:"pen",team:"bot",pl:"PK戦 4-3",nt:"カナレが決勝PK/GKギルが2セーブ"}
       ]},
   L2:{col:"L_R32",dt:"7/1(水) 6:00",venue:"メットライフ・スタジアム",status:"finished",
       top:t("FRA",3),bot:t("SWE",0),winner:"top",
       events:[
         {min:"45'",type:"goal",team:"top",pl:"ムバッペ",nt:"前半終了間際にフランス先制"},
         {min:"53'",type:"goal",team:"top",pl:"バルコラ",nt:"フランス追加点"},
-        {min:"74'",type:"goal",team:"top",pl:"ムバッペ",nt:"この試合2点目／大会通算6得点でメッシに並ぶ"}
+        {min:"74'",type:"goal",team:"top",pl:"ムバッペ",nt:"この試合2点目/大会通算6得点でメッシに並ぶ"}
       ]},
   L3:{col:"L_R32",dt:"6/29(月)",venue:"SoFiスタジアム",status:"finished",top:t("RSA",0),bot:t("CAN",1),winner:"bot",
       events:[
@@ -311,17 +311,23 @@ var M = {
         {min:"HT",type:"info",pl:"ハーフタイム 0-0",nt:"モロッコが枠内シュートでやや上回る"},
         {min:"後半",type:"goal",team:"top",pl:"ガクポ",nt:"オランダ先制"},
         {min:"90+1'",type:"goal",team:"bot",pl:"ディオプ",nt:"土壇場の同点弾で延長へ"},
-        {min:"PK",type:"pen",team:"bot",pl:"PK戦 3-2",nt:"サイバリが決勝PK／モロッコがベスト16進出"}
+        {min:"PK",type:"pen",team:"bot",pl:"PK戦 3-2",nt:"サイバリが決勝PK/モロッコがベスト16進出"}
       ]},
-  L5:{col:"L_R32",dt:"7/3(金) 8:00",venue:"-",status:"upcoming",top:t("POR"),bot:t("CRO")},
+  L5:{col:"L_R32",dt:"7/3(金) 8:00",venue:"トロント・スタジアム",status:"finished",
+      top:t("POR",2),bot:t("CRO",1),winner:"top",
+      events:[
+        {min:"53'",type:"goal",team:"bot",pl:"イヴァン・ペリシッチ",nt:"スタニシッチのクロスに左足で合わせクロアチア先制"},
+        {min:"68'",type:"pen",team:"top",pl:"クリスティアーノ・ロナウド",nt:"PKを冷静に決めて同点/ロナウド、この大会ノックアウト初ゴール"},
+        {min:"90+4'",type:"goal",team:"top",pl:"ゴンサロ・ラモス",nt:"アディショナルタイムのヘッドで劇的な決勝点"}
+      ]},
   L6:{col:"L_R32",dt:"7/3(金) 4:00",venue:"-",status:"live",minute:"前半 14分",top:t("ESP",0),bot:t("ALG",0)},
   L7:{col:"L_R32",dt:"7/2(木) 9:00",venue:"サンフランシスコ・ベイエリア・スタジアム",status:"finished",
       top:t("USA",2),bot:t("BIH",0),winner:"top",
       events:[
         {min:"45'",type:"goal",team:"top",pl:"フォラリン・バログン",nt:"こぼれ球をGKヴァシリの股下に流し込みアメリカ先制"},
-        {min:"64'",type:"red",team:"top",pl:"フォラリン・バログン",nt:"ムハレモヴィッチの足を踏みVAR確認の末に一発退場／アメリカは10人に"},
-        {min:"81'",type:"yellow",team:"bot",pl:"ステファン・ラデリッチ",nt:"ペナルティエリア際でファウルし警告／FKを与える"},
-        {min:"82'",type:"goal",team:"top",pl:"マリク・ティルマン",nt:"直接FKを叩き込みアメリカが2点目／10人ながらリード拡大"}
+        {min:"64'",type:"red",team:"top",pl:"フォラリン・バログン",nt:"ムハレモヴィッチの足を踏みVAR確認の末に一発退場/アメリカは10人に"},
+        {min:"81'",type:"yellow",team:"bot",pl:"ステファン・ラデリッチ",nt:"ペナルティエリア際でファウルし警告/FKを与える"},
+        {min:"82'",type:"goal",team:"top",pl:"マリク・ティルマン",nt:"直接FKを叩き込みアメリカが2点目/10人ながらリード拡大"}
       ]},
   L8:{col:"L_R32",dt:"7/2(木) 5:00",venue:"ルーメン・フィールド",status:"finished",
       top:t("BEL",3),bot:t("SEN",2),winner:"top",
@@ -336,7 +342,7 @@ var M = {
       ]},
   LA:{col:"L_R16",dt:"7/5(日) 6:00",status:"upcoming",top:t("PAR"),bot:t("FRA")},
   LB:{col:"L_R16",dt:"7/5(日) 2:00",status:"upcoming",top:t("CAN"),bot:t("MAR")},
-  LC:{col:"L_R16",dt:"7/7(火) 4:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
+  LC:{col:"L_R16",dt:"7/7(火) 4:00",status:"upcoming",top:t("POR"),bot:t("TBD")},
   LD:{col:"L_R16",dt:"7/7(火) 9:00",status:"upcoming",top:t("USA"),bot:t("BEL")},
   LQ1:{col:"L_QF",dt:"7/10(金) 5:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
   LQ2:{col:"L_QF",dt:"7/11(土) 4:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
@@ -352,10 +358,10 @@ var M = {
       ]},
   R2:{col:"R_R32",dt:"7/1(水) 2:00",venue:"AT&Tスタジアム",status:"finished",top:t("CIV",1),bot:t("NOR",2),winner:"bot",
       events:[
-        {min:"39'",type:"goal",team:"bot",pl:"アントニオ・ヌサ",nt:"エーデゴール アシスト／ノルウェー先制"},
+        {min:"39'",type:"goal",team:"bot",pl:"アントニオ・ヌサ",nt:"エーデゴール アシスト/ノルウェー先制"},
         {min:"45+2'",type:"yellow",team:"bot",pl:"アントニオ・ヌサ",nt:"前半終了間際に警告"},
         {min:"74'",type:"goal",team:"top",pl:"アマド・ディアロ",nt:"ペペとのワンツーから同点弾"},
-        {min:"86'",type:"goal",team:"bot",pl:"ハーランド",nt:"終盤に決勝点／ノルウェー初のKO勝利"}
+        {min:"86'",type:"goal",team:"bot",pl:"ハーランド",nt:"終盤に決勝点/ノルウェー初のKO勝利"}
       ]},
   R3:{col:"R_R32",dt:"7/1(水) 10:00",venue:"エスタディオ・アステカ",status:"finished",
       top:t("MEX",2),bot:t("ECU",0),winner:"top",
@@ -375,7 +381,7 @@ var M = {
         {min:"19'",type:"yellow",team:"top",pl:"ジュード・ベリンガム",nt:"警告"},
         {min:"28'",type:"yellow",team:"bot",pl:"ノア・サディキ",nt:"警告"},
         {min:"75'",type:"goal",team:"top",pl:"ハリー・ケイン",nt:"ゴードンのクロスにヘッドで合わせ同点"},
-        {min:"86'",type:"goal",team:"top",pl:"ハリー・ケイン",nt:"ゴードンのアシストで勝ち越し弾／イングランドが逆転勝利"}
+        {min:"86'",type:"goal",team:"top",pl:"ハリー・ケイン",nt:"ゴードンのアシストで勝ち越し弾/イングランドが逆転勝利"}
       ]},
   R5:{col:"R_R32",dt:"7/4(土) 7:00",venue:"-",status:"upcoming",top:t("ARG"),bot:t("CPV")},
   R6:{col:"R_R32",dt:"7/4(土) 3:00",venue:"-",status:"upcoming",top:t("AUS"),bot:t("EGY")},
@@ -516,7 +522,7 @@ function timelineHTML(m){
       '</div><div class="side r">'+(isL?"":block)+'</div></div>';
   }).join("");
   return '<div class="tl">'+rows+'</div>'+
-    '<div style="text-align:center;font-size:10.5px;color:var(--muted);margin-top:10px">⚽得点 ・ 🟨🟥カード ・ 🔄交代（判明分のみ）</div>';
+    '<div style="text-align:center;font-size:10.5px;color:var(--muted);margin-top:10px">⚽得点 ・ 🟨🟥カード ・ 🔄交代(判明分のみ)</div>';
 }
 
 function openModal(id){
@@ -525,7 +531,7 @@ function openModal(id){
   else if(m.status==="finished"){statusTxt="試合終了";statusCls="ss-fin";}
   else{statusTxt="キックオフ "+m.dt;statusCls="ss-up";}
   var sct=function(s){return (s.s===null||s.s===undefined)?"–":s.s;};
-  var pen=m.pen?'<div class="pen-line">PK戦 '+m.pen.top+' - '+m.pen.bot+'（'+N[m.winner==='top'?m.top.c:m.bot.c]+' 勝利）</div>':'';
+  var pen=m.pen?'<div class="pen-line">PK戦 '+m.pen.top+' - '+m.pen.bot+'('+N[m.winner==='top'?m.top.c:m.bot.c]+' 勝利)</div>':'';
 
   var d = m.detail==="NEDMAR"?NEDMAR:null;
   var tabsDef=[];
@@ -543,7 +549,7 @@ function openModal(id){
       return '<div class="stat-row"><div class="v '+hl+'">'+l+'</div><div class="lbl">'+lbl+'</div><div class="v '+hr+'">'+r+'</div></div>';
     }).join("");
     panes+='<div class="tab-pane" id="pane-data">'+
-      '<div class="wp-title">ライブ勝率予測（90分）</div>'+
+      '<div class="wp-title">ライブ勝率予測(90分)</div>'+
       '<div class="wp-head"><span>'+N[m.top.c]+'<br><b style="color:var(--ned)">'+d.prob.l+'%</b></span>'+
       '<span style="text-align:center">延長/引分<br><b style="color:var(--muted)">'+d.prob.d+'%</b></span>'+
       '<span style="text-align:right">'+N[m.bot.c]+'<br><b style="color:var(--mar)">'+d.prob.r+'%</b></span></div>'+
@@ -583,7 +589,7 @@ function openModal(id){
         '<div class="score-team"><div class="bigflag">'+F[m.bot.c]+'</div><div class="tn">'+N[m.bot.c]+'</div>'+ovrBadgeBig(m.bot.c)+ownBig(m.bot.c)+'</div>'+
       '</div>'+pen+'</div>'+
     tabsHTML+'<div class="tab-body">'+panes+'</div>'+
-    '<div class="modal-foot">時間はすべて日本時間 ／ データ取得: '+DATA_UPDATED+'</div>';
+    '<div class="modal-foot">時間はすべて日本時間 ・ データ取得: '+DATA_UPDATED+'</div>';
   var firstPane=modal.querySelector(".tab-pane");
   if(firstPane) firstPane.classList.add("active");
   overlay.classList.add("open");
