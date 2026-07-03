@@ -237,13 +237,13 @@
 <div class="toast-wrap" id="toastWrap"></div>
 
 <script>
-var DATA_UPDATED = "2026/7/3 (金) 10:38 取得";
+var DATA_UPDATED = "2026/7/3 (金) 11:00 取得";
 /* 国旗は flagcdn.com の公式国旗SVGを使用（全環境で正しく表示）。要ネット接続。 */
 var FC = {
   GER:"de",PAR:"py",FRA:"fr",SWE:"se",RSA:"za",CAN:"ca",NED:"nl",MAR:"ma",
   POR:"pt",CRO:"hr",ESP:"es",ALG:"dz",USA:"us",BIH:"ba",BEL:"be",SEN:"sn",
   BRA:"br",JPN:"jp",CIV:"ci",NOR:"no",MEX:"mx",ECU:"ec",ENG:"gb-eng",COD:"cd",
-  ARG:"ar",CPV:"cv",AUS:"au",EGY:"eg",SUI:"ch",IRN:"ir",COL:"co",GHA:"gh"
+  ARG:"ar",CPV:"cv",AUS:"au",EGY:"eg",SUI:"ch",IRN:"ir",COL:"co",GHA:"gh",AUT:"at"
 };
 var F = {};
 Object.keys(FC).forEach(function(k){
@@ -256,7 +256,7 @@ var N = {
   USA:"アメリカ",BIH:"ボスニア",BEL:"ベルギー",SEN:"セネガル",BRA:"ブラジル",JPN:"日本",
   CIV:"コートジボワール",NOR:"ノルウェー",MEX:"メキシコ",ECU:"エクアドル",ENG:"イングランド",COD:"DRコンゴ",
   ARG:"アルゼンチン",CPV:"カーボベルデ",AUS:"オーストラリア",EGY:"エジプト",SUI:"スイス",IRN:"イラン",
-  COL:"コロンビア",GHA:"ガーナ",TBD:"勝者待ち"
+  COL:"コロンビア",GHA:"ガーナ",TBD:"勝者待ち",AUT:"オーストリア"
 };
 /* 各国の担当者（オーナー）。勝ち上がると担当者も次ラウンドに自動で追従する。 */
 var OWN = {
@@ -265,7 +265,7 @@ var OWN = {
   USA:"だいと",BIH:"れんた",BEL:"けんと",SEN:"つばさ",BRA:"のすけ",JPN:"内野",
   CIV:"ゆうと",NOR:"れん",MEX:"飛竜",ECU:"なおき",ENG:"あつき",COD:"りょうが",
   ARG:"しずく",CPV:"マイキー",AUS:"かおる",EGY:"けいご",SUI:"ちひろ",IRN:"こうせい",
-  COL:"あきら",GHA:"けいと",TBD:""
+  COL:"あきら",GHA:"けいと",TBD:"",AUT:"こうせい"
 };
 function ownTag(c){var o=OWN[c]; return o?'<span class="own">'+o+'</span>':'';}
 function ownBig(c){var o=OWN[c]; return o?'<div class="own-big">担当 '+o+'</div>':'';}
@@ -279,7 +279,7 @@ var OVR = {
   ARG:91, ESP:91, FRA:90, ENG:89, BRA:88, POR:87, NED:86, MAR:86, BEL:86,
   GER:85, CRO:85, COL:84, MEX:84, SEN:83, USA:83, JPN:83, SUI:82, IRN:81,
   NOR:80, ECU:80, ALG:79, EGY:79, CAN:79, AUS:79, SWE:79, CIV:78, PAR:76,
-  COD:75, RSA:73, BIH:72, CPV:71, GHA:70, TBD:null
+  COD:75, RSA:73, BIH:72, CPV:71, GHA:70, TBD:null, AUT:80
 };
 function ovrBadge(c){ var v=OVR[c]; return (v===null||v===undefined)?"":'<span class="ovr">'+v+'</span>'; }
 function ovrBadgeBig(c){ var v=OVR[c]; return (v===null||v===undefined)?"":'<div class="ovr-big">OVR <b>'+v+'</b></div>'; }
@@ -320,14 +320,13 @@ var M = {
         {min:"68'",type:"pen",team:"top",pl:"クリスティアーノ・ロナウド",nt:"PKを冷静に決めて同点／ロナウド、この大会ノックアウト初ゴール"},
         {min:"90+4'",type:"goal",team:"top",pl:"ゴンサロ・ラモス",nt:"アディショナルタイムのヘッドで劇的な決勝点"}
       ]},
-  L6:{col:"L_R32",dt:"7/3(金) 4:00",venue:"BCプレイス・スタジアム",status:"finished",
-      top:t("ESP",3),bot:t("ALG",0),winner:"top",
+  L6:{col:"L_R32",dt:"7/3(金) 4:00",venue:"SoFiスタジアム",status:"finished",
+      top:t("ESP",3),bot:t("AUT",0),winner:"top",
       events:[
-        {min:"23'",type:"goal",team:"top",pl:"ラミン・ヤマル",nt:"鋭いドリブルから左足を振り抜きスペイン先制"},
-        {min:"41'",type:"yellow",team:"bot",pl:"イスマエル・ベナセル",nt:"中盤での激しいタックルで警告"},
-        {min:"55'",type:"goal",team:"top",pl:"フェラン・トーレス",nt:"ヤマルのスルーパスに抜け出し追加点"},
-        {min:"63'",type:"red",team:"bot",pl:"イスマエル・ベナセル",nt:"決定的な突破を止めて2枚目の警告により退場／アルジェリアは10人に"},
-        {min:"77'",type:"goal",team:"top",pl:"ニコ・ウィリアムズ",nt:"数的優位を生かしダメ押しの3点目"}
+        {min:"36'",type:"goal",team:"top",pl:"ミケル・オヤルサバル",nt:"ククレジャのクロスをワンタッチで押し込みスペイン先制"},
+        {min:"66'",type:"goal",team:"top",pl:"ペドロ・ポルロ",nt:"バエナのパスに合わせスペインが2点目"},
+        {min:"83'",type:"yellow",team:"bot",pl:"シュテファン・ポッシュ",nt:"警告"},
+        {min:"88'",type:"goal",team:"top",pl:"ミケル・オヤルサバル",nt:"ククレジャのアシストでこの試合2点目、スペインが3-0で快勝"}
       ]},
   L7:{col:"L_R32",dt:"7/2(木) 9:00",venue:"サンフランシスコ・ベイエリア・スタジアム",status:"finished",
       top:t("USA",2),bot:t("BIH",0),winner:"top",
@@ -393,7 +392,7 @@ var M = {
       ]},
   R5:{col:"R_R32",dt:"7/4(土) 7:00",venue:"-",status:"upcoming",top:t("ARG"),bot:t("CPV")},
   R6:{col:"R_R32",dt:"7/4(土) 3:00",venue:"-",status:"upcoming",top:t("AUS"),bot:t("EGY")},
-  R7:{col:"R_R32",dt:"7/3(金) 12:00",venue:"-",status:"upcoming",top:t("SUI"),bot:t("IRN")},
+  R7:{col:"R_R32",dt:"7/3(金) 12:00",venue:"BCプレイス",status:"upcoming",top:t("SUI"),bot:t("ALG")},
   R8:{col:"R_R32",dt:"7/4(土) 10:30",venue:"-",status:"upcoming",top:t("COL"),bot:t("GHA")},
   RA:{col:"R_R16",dt:"7/6(月) 5:00",status:"upcoming",top:t("BRA"),bot:t("NOR")},
   RB:{col:"R_R16",dt:"7/6(月) 9:00",status:"upcoming",top:t("MEX"),bot:t("ENG")},
