@@ -237,7 +237,7 @@
 <div class="toast-wrap" id="toastWrap"></div>
 
 <script>
-var DATA_UPDATED = "2026/7/6 (月) 10:36 取得";
+var DATA_UPDATED = "2026/7/6 (月) 10:53 取得";
 /* 国旗は flagcdn.com の公式国旗SVGを使用（全環境で正しく表示）。要ネット接続。 */
 var FC = {
   GER:"de",PAR:"py",FRA:"fr",SWE:"se",RSA:"za",CAN:"ca",NED:"nl",MAR:"ma",
@@ -258,7 +258,7 @@ var N = {
   ARG:"アルゼンチン",CPV:"カーボベルデ",AUS:"オーストラリア",EGY:"エジプト",SUI:"スイス",IRN:"イラン",
   COL:"コロンビア",GHA:"ガーナ",TBD:"勝者待ち",AUT:"オーストリア"
 };
-/* 各国の担当者（オーナー）。勝ち上がると担当者も次ラウンドに自動で追従する。 */
+/* 各国の担当者(オーナー)。勝ち上がると担当者も次ラウンドに自動で追従する。 */
 var OWN = {
   GER:"やまと",PAR:"しょうえい",FRA:"ちゅん",SWE:"だいき",RSA:"だいち",CAN:"りょうた",
   NED:"ゆめと",MAR:"にしれん",POR:"まっぽ",CRO:"トーマス",ESP:"あみ",ALG:"こうせい",
@@ -271,8 +271,8 @@ function ownTag(c){var o=OWN[c]; return o?'<span class="own">'+o+'</span>':'';}
 function ownBig(c){var o=OWN[c]; return o?'<div class="own-big">担当 '+o+'</div>':'';}
 function t(c,s){return {c:c, s:(s===undefined?null:s)};}
 
-/* チーム戦力 OVR（総合値・0-100スケール）
-   算出根拠: FIFA世界ランキング ポイント（2026/6/11更新）を基準に
+/* チーム戦力 OVR(総合値・0-100スケール)
+   算出根拠: FIFA世界ランキング ポイント(2026/6/11更新)を基準に
    0-100へ線形換算し、スカッドの選手層・直近の戦力を加味して微調整。
    出典: FIFA/Coca-Cola Men's World Ranking (2026年6月). */
 var OVR = {
@@ -297,7 +297,7 @@ var M = {
       events:[
         {min:"45'",type:"goal",team:"top",pl:"ムバッペ",nt:"前半終了間際にフランス先制"},
         {min:"53'",type:"goal",team:"top",pl:"バルコラ",nt:"フランス追加点"},
-        {min:"74'",type:"goal",team:"top",pl:"ムバッペ",nt:"この試合2点目／大会通算6得点でメッシに並ぶ"}
+        {min:"74'",type:"goal",team:"top",pl:"ムバッペ",nt:"この試合2点目/大会通算6得点でメッシに並ぶ"}
       ]},
   L3:{col:"L_R32",dt:"6/29(月)",venue:"SoFiスタジアム",status:"finished",top:t("RSA",0),bot:t("CAN",1),winner:"bot",
       events:[
@@ -317,7 +317,7 @@ var M = {
       top:t("POR",2),bot:t("CRO",1),winner:"top",
       events:[
         {min:"53'",type:"goal",team:"bot",pl:"イヴァン・ペリシッチ",nt:"スタニシッチのクロスに左足で合わせクロアチア先制"},
-        {min:"68'",type:"pen",team:"top",pl:"クリスティアーノ・ロナウド",nt:"PKを冷静に決めて同点／ロナウド、この大会ノックアウト初ゴール"},
+        {min:"68'",type:"pen",team:"top",pl:"クリスティアーノ・ロナウド",nt:"PKを冷静に決めて同点/ロナウド、この大会ノックアウト初ゴール"},
         {min:"90+4'",type:"goal",team:"top",pl:"ゴンサロ・ラモス",nt:"アディショナルタイムのヘッドで劇的な決勝点"}
       ]},
   L6:{col:"L_R32",dt:"7/3(金) 4:00",venue:"SoFiスタジアム",status:"finished",
@@ -332,9 +332,9 @@ var M = {
       top:t("USA",2),bot:t("BIH",0),winner:"top",
       events:[
         {min:"45'",type:"goal",team:"top",pl:"フォラリン・バログン",nt:"こぼれ球をGKヴァシリの股下に流し込みアメリカ先制"},
-        {min:"64'",type:"red",team:"top",pl:"フォラリン・バログン",nt:"ムハレモヴィッチの足を踏みVAR確認の末に一発退場／アメリカは10人に"},
-        {min:"81'",type:"yellow",team:"bot",pl:"ステファン・ラデリッチ",nt:"ペナルティエリア際でファウルし警告／FKを与える"},
-        {min:"82'",type:"goal",team:"top",pl:"マリク・ティルマン",nt:"直接FKを叩き込みアメリカが2点目／10人ながらリード拡大"}
+        {min:"64'",type:"red",team:"top",pl:"フォラリン・バログン",nt:"ムハレモヴィッチの足を踏みVAR確認の末に一発退場/アメリカは10人に"},
+        {min:"81'",type:"yellow",team:"bot",pl:"ステファン・ラデリッチ",nt:"ペナルティエリア際でファウルし警告/FKを与える"},
+        {min:"82'",type:"goal",team:"top",pl:"マリク・ティルマン",nt:"直接FKを叩き込みアメリカが2点目/10人ながらリード拡大"}
       ]},
   L8:{col:"L_R32",dt:"7/2(木) 5:00",venue:"ルーメン・フィールド",status:"finished",
       top:t("BEL",3),bot:t("SEN",2),winner:"top",
@@ -350,7 +350,7 @@ var M = {
   LA:{col:"L_R16",dt:"7/5(日) 6:00",venue:"リンカーン・フィナンシャル・フィールド",status:"finished",
       top:t("PAR",0),bot:t("FRA",1),winner:"bot",
       events:[
-        {min:"70'",type:"pen",team:"bot",pl:"キリアン・エムバペ",nt:"デゼイレ・ドゥエがディエゴ・ゴメスに倒されPK獲得、エムバペが冷静に沈め貴重な決勝点／大会通算7得点でメッシに並ぶ"},
+        {min:"70'",type:"pen",team:"bot",pl:"キリアン・エムバペ",nt:"デゼイレ・ドゥエがディエゴ・ゴメスに倒されPK獲得、エムバペが冷静に沈め貴重な決勝点/大会通算7得点でメッシに並ぶ"},
         {min:"後半",type:"yellow",team:"bot",pl:"マニュ・コネ",nt:"カセレスへの遅れた寄せで警告"},
         {min:"後半",type:"yellow",team:"bot",pl:"ミシャエル・オリーズ",nt:"ガラルサとの接触で警告"},
         {min:"後半",type:"yellow",team:"top",pl:"フアン・ホセ・カセレス",nt:"警告"}
@@ -359,7 +359,7 @@ var M = {
       top:t("CAN",0),bot:t("MAR",3),winner:"bot",
       events:[
         {min:"20'",type:"yellow",team:"bot",pl:"ハルハル",nt:"警告"},
-        {min:"21'",type:"sub",team:"bot",pl:"ラヒミ",nt:"サイバリが負傷し途中交代（大会得点源のモロッコMFを欠く痛手）"},
+        {min:"21'",type:"sub",team:"bot",pl:"ラヒミ",nt:"サイバリが負傷し途中交代(大会得点源のモロッコMFを欠く痛手)"},
         {min:"40'",type:"yellow",team:"top",pl:"ラリェア",nt:"警告"},
         {min:"40'",type:"yellow",team:"bot",pl:"ハキミ",nt:"警告"},
         {min:"43'",type:"yellow",team:"top",pl:"ダヴィド",nt:"警告"},
@@ -388,15 +388,15 @@ var M = {
       ]},
   R2:{col:"R_R32",dt:"7/1(水) 2:00",venue:"AT&Tスタジアム",status:"finished",top:t("CIV",1),bot:t("NOR",2),winner:"bot",
       events:[
-        {min:"39'",type:"goal",team:"bot",pl:"アントニオ・ヌサ",nt:"エーデゴール アシスト／ノルウェー先制"},
+        {min:"39'",type:"goal",team:"bot",pl:"アントニオ・ヌサ",nt:"エーデゴール アシスト/ノルウェー先制"},
         {min:"45+2'",type:"yellow",team:"bot",pl:"アントニオ・ヌサ",nt:"前半終了間際に警告"},
         {min:"74'",type:"goal",team:"top",pl:"アマド・ディアロ",nt:"ペペとのワンツーから同点弾"},
-        {min:"86'",type:"goal",team:"bot",pl:"ハーランド",nt:"終盤に決勝点／ノルウェー初のKO勝利"}
+        {min:"86'",type:"goal",team:"bot",pl:"ハーランド",nt:"終盤に決勝点/ノルウェー初のKO勝利"}
       ]},
   R3:{col:"R_R32",dt:"7/1(水) 10:00",venue:"エスタディオ・アステカ",status:"finished",
       top:t("MEX",2),bot:t("ECU",0),winner:"top",
       events:[
-        {min:"開始前",type:"info",pl:"落雷のため試合開始が遅延",nt:"当初22:00(現地)予定→荒天のため後ろ倒し。選手はピッチに再入場し再開待ち"},
+        {min:"開始前",type:"info",pl:"落雷のため試合開始が遅延",nt:"当初22:00(現地)予定/荒天のため後ろ倒し。選手はピッチに再入場し再開待ち"},
         {min:"22'",type:"goal",team:"top",pl:"キニョネス",nt:"メキシコ先制"},
         {min:"31'",type:"goal",team:"top",pl:"ヒメネス",nt:"キニョネスのアシストでメキシコ2点目"},
         {min:"45'",type:"yellow",team:"bot",pl:"A.フランコ",nt:"危険なプレーで警告"},
@@ -411,27 +411,27 @@ var M = {
         {min:"19'",type:"yellow",team:"top",pl:"ジュード・ベリンガム",nt:"警告"},
         {min:"28'",type:"yellow",team:"bot",pl:"ノア・サディキ",nt:"警告"},
         {min:"75'",type:"goal",team:"top",pl:"ハリー・ケイン",nt:"ゴードンのクロスにヘッドで合わせ同点"},
-        {min:"86'",type:"goal",team:"top",pl:"ハリー・ケイン",nt:"ゴードンのアシストで勝ち越し弾／イングランドが逆転勝利"}
+        {min:"86'",type:"goal",team:"top",pl:"ハリー・ケイン",nt:"ゴードンのアシストで勝ち越し弾/イングランドが逆転勝利"}
       ]},
   R5:{col:"R_R32",dt:"7/4(土) 7:00",venue:"ハードロック・スタジアム",status:"finished",
       top:t("ARG",3),bot:t("CPV",2),winner:"top",
       events:[
-        {min:"29'",type:"goal",team:"top",pl:"リオネル・メッシ",nt:"リサンドロ・マルティネスの浮き球パスに反応しGKの頭上を越すループでアルゼンチン先制／大会通算7得点、歴代単独最多の通算20得点に到達"},
+        {min:"29'",type:"goal",team:"top",pl:"リオネル・メッシ",nt:"リサンドロ・マルティネスの浮き球パスに反応しGKの頭上を越すループでアルゼンチン先制/大会通算7得点、歴代単独最多の通算20得点に到達"},
         {min:"59'",type:"goal",team:"bot",pl:"デロイ・ドゥアルテ",nt:"カーボベルデが同点に追いつく"},
         {min:"68'",type:"yellow",team:"bot",pl:"ケヴィン・ピナ",nt:"危険なプレーで警告"},
         {min:"90分",type:"info",pl:"90分終了時点で1-1",nt:"延長戦へ"},
         {min:"92'",type:"goal",team:"top",pl:"リサンドロ・マルティネス",nt:"延長前半開始早々にアルゼンチンが勝ち越し"},
         {min:"延長前半",type:"goal",team:"bot",pl:"シドニー・カブラル",nt:"カットインからの豪快な一撃で同点、カーボベルデ史上屈指のゴール"},
-        {min:"延長後半",type:"goal",team:"top",pl:"オウンゴール(ボルジェス)",nt:"ロメロがメッシのクロスに頭で合わせた軌道がボルジェスに当たりゴールイン／アルゼンチンが決勝点"}
+        {min:"延長後半",type:"goal",team:"top",pl:"オウンゴール(ボルジェス)",nt:"ロメロがメッシのクロスに頭で合わせた軌道がボルジェスに当たりゴールイン/アルゼンチンが決勝点"}
       ]},
   R6:{col:"R_R32",dt:"7/4(土) 3:00",venue:"AT&Tスタジアム",status:"finished",
       top:t("AUS",1),bot:t("EGY",1),pen:{top:2,bot:4},winner:"bot",
       events:[
         {min:"13'",type:"goal",team:"bot",pl:"アショール",nt:"セットプレーからのこぼれ球をヘディングで叩き込みエジプト先制"},
-        {min:"55'",type:"goal",team:"top",pl:"オウンゴール(モハメド・ハニー)",nt:"O.オニールのFKがエジプトDFモハメド・ハニーの頭部に当たりゴール右上へ／オーストラリア同点"},
+        {min:"55'",type:"goal",team:"top",pl:"オウンゴール(モハメド・ハニー)",nt:"O.オニールのFKがエジプトDFモハメド・ハニーの頭部に当たりゴール右上へ/オーストラリア同点"},
         {min:"105'",type:"yellow",team:"bot",pl:"ハイセム・ハッサン",nt:"延長前半、警告"},
         {min:"120'",type:"yellow",team:"bot",pl:"ヤセル・イブラヒム",nt:"延長終了間際、警告"},
-        {min:"PK",type:"pen",team:"bot",pl:"PK戦 4-2",nt:"サラーがパネンカで決める／豪州はサウター、ヘリントンが失敗しエジプトが勝利"}
+        {min:"PK",type:"pen",team:"bot",pl:"PK戦 4-2",nt:"サラーがパネンカで決める/豪州はサウター、ヘリントンが失敗しエジプトが勝利"}
       ]},
   R7:{col:"R_R32",dt:"7/3(金) 12:00",venue:"BCプレイス",status:"finished",
       top:t("SUI",2),bot:t("ALG",0),winner:"top",
@@ -445,23 +445,28 @@ var M = {
         {min:"8'",type:"sub",team:"top",pl:"ルイス・スアレス",nt:"J.コルドバが負傷離脱、途中出場"},
         {min:"13'",type:"goal",team:"top",pl:"ジョン・アリアス",nt:"スアレスのクロスに合わせコロンビア先制"},
         {min:"前半",type:"yellow",team:"top",pl:"ジョン・アリアス",nt:"イニャキ・ウィリアムズへの危険なプレーで警告"},
-        {min:"試合終了",type:"info",pl:"コロンビアが1-0で勝利",nt:"ガーナはシュート0本に終わる／ベスト16でスイスと対戦"}
+        {min:"試合終了",type:"info",pl:"コロンビアが1-0で勝利",nt:"ガーナはシュート0本に終わる/ベスト16でスイスと対戦"}
       ]},
   RA:{col:"R_R16",dt:"7/6(月) 5:00",venue:"メットライフ・スタジアム",status:"finished",
       top:t("BRA",1),bot:t("NOR",2),winner:"bot",
       events:[
         {min:"前半",type:"info",pl:"オルヤン・ニーランド(GK)",nt:"ブルーノ・ギマランイスのPKを左に飛んでセーブ"},
         {min:"79'",type:"goal",team:"bot",pl:"アーリング・ハーランド",nt:"長い均衡を破りノルウェーが先制"},
-        {min:"90'",type:"goal",team:"bot",pl:"アーリング・ハーランド",nt:"エリア外から低い弾道を流し込みこの試合2点目／大会通算7得点でメッシ、エムバペと並ぶ"},
+        {min:"90'",type:"goal",team:"bot",pl:"アーリング・ハーランド",nt:"エリア外から低い弾道を流し込みこの試合2点目/大会通算7得点でメッシ、エムバペと並ぶ"},
         {min:"90+6'",type:"yellow",team:"top",pl:"ネイマール",nt:"オデゴールを削るファウルで警告"},
         {min:"90+10'",type:"pen",team:"top",pl:"ネイマール",nt:"カゼミーロへの反則で得たPKを沈め1点差に迫るも及ばず"}
       ]},
-  RB:{col:"R_R16",dt:"7/6(月) 9:00",venue:"エスタディオ アステカ",status:"live",minute:"前半 36分",
-      top:t("MEX",0),bot:t("ENG",0),
+  RB:{col:"R_R16",dt:"7/6(月) 9:00",venue:"エスタディオ アステカ",status:"live",minute:"後半",
+      top:t("MEX",1),bot:t("ENG",2),
       events:[
-        {min:"開始前",type:"info",pl:"荒天のため試合開始が約1時間遅延",nt:"予定20:00(現地)→21:00(現地)頃にキックオフ変更"},
+        {min:"開始前",type:"info",pl:"荒天のため試合開始が約1時間遅延",nt:"予定20:00(現地)/21:00(現地)頃にキックオフ変更"},
         {min:"前半",type:"info",pl:"試合開始",nt:"エスタディオ・アステカで超満員の中キックオフ"},
-        {min:"前半36分",type:"info",pl:"スコアレスで拮抗",nt:"メキシコが枠内シュート1本、ヒメネスのヘッドがブロックされる場面も。イングランドはゴードンが左サイドで再三仕掛けるも決定機作れず"}
+        {min:"1'",type:"yellow",team:"bot",pl:"デクラン・ライス",nt:"ロモへの高い足でのプレーで序盤に警告"},
+        {min:"36'",type:"goal",team:"bot",pl:"ジュード・ベリンガム",nt:"サカのクロスにヘディングで合わせイングランド先制"},
+        {min:"38'",type:"goal",team:"bot",pl:"ジュード・ベリンガム",nt:"ケインのアシストからこの試合2得点目、わずか99秒でブレイス達成"},
+        {min:"42'",type:"goal",team:"top",pl:"フリアン・キニョーネス",nt:"アルバラードのFKのこぼれ球をボレーで叩き込みメキシコが1点差に詰め寄る"},
+        {min:"HT",type:"info",pl:"前半終了 メキシコ1-2イングランド",nt:"ベリンガムのブレイスとキニョーネスの得点で目まぐるしい前半が終了"},
+        {min:"後半",type:"info",pl:"後半再開",nt:"スコア1-2のまま試合再開。イングランドがリードを守る展開"}
       ]},
   RC:{col:"R_R16",dt:"7/8(水) 1:00",status:"upcoming",top:t("ARG"),bot:t("EGY")},
   RD:{col:"R_R16",dt:"7/8(水) 5:00",status:"upcoming",top:t("SUI"),bot:t("COL")},
@@ -596,7 +601,7 @@ function timelineHTML(m){
       '</div><div class="side r">'+(isL?"":block)+'</div></div>';
   }).join("");
   return '<div class="tl">'+rows+'</div>'+
-    '<div style="text-align:center;font-size:10.5px;color:var(--muted);margin-top:10px">⚽得点 ・ 🟨🟥カード ・ 🔄交代（判明分のみ）</div>';
+    '<div style="text-align:center;font-size:10.5px;color:var(--muted);margin-top:10px">⚽得点 ・ 🟨🟥カード ・ 🔄交代(判明分のみ)</div>';
 }
 
 function openModal(id){
@@ -605,7 +610,7 @@ function openModal(id){
   else if(m.status==="finished"){statusTxt="試合終了";statusCls="ss-fin";}
   else{statusTxt="キックオフ "+m.dt;statusCls="ss-up";}
   var sct=function(s){return (s.s===null||s.s===undefined)?"–":s.s;};
-  var pen=m.pen?'<div class="pen-line">PK戦 '+m.pen.top+' - '+m.pen.bot+'（'+N[m.winner==='top'?m.top.c:m.bot.c]+' 勝利）</div>':'';
+  var pen=m.pen?'<div class="pen-line">PK戦 '+m.pen.top+' - '+m.pen.bot+'('+N[m.winner==='top'?m.top.c:m.bot.c]+' 勝利)</div>':'';
 
   var d = m.detail==="NEDMAR"?NEDMAR:null;
   var tabsDef=[];
@@ -623,7 +628,7 @@ function openModal(id){
       return '<div class="stat-row"><div class="v '+hl+'">'+l+'</div><div class="lbl">'+lbl+'</div><div class="v '+hr+'">'+r+'</div></div>';
     }).join("");
     panes+='<div class="tab-pane" id="pane-data">'+
-      '<div class="wp-title">ライブ勝率予測（90分）</div>'+
+      '<div class="wp-title">ライブ勝率予測(90分)</div>'+
       '<div class="wp-head"><span>'+N[m.top.c]+'<br><b style="color:var(--ned)">'+d.prob.l+'%</b></span>'+
       '<span style="text-align:center">延長/引分<br><b style="color:var(--muted)">'+d.prob.d+'%</b></span>'+
       '<span style="text-align:right">'+N[m.bot.c]+'<br><b style="color:var(--mar)">'+d.prob.r+'%</b></span></div>'+
