@@ -237,7 +237,7 @@
 <div class="toast-wrap" id="toastWrap"></div>
 
 <script>
-var DATA_UPDATED = "2026/7/6 (月) 09:16 取得";
+var DATA_UPDATED = "2026/7/6 (月) 10:08 取得";
 /* 国旗は flagcdn.com の公式国旗SVGを使用（全環境で正しく表示）。要ネット接続。 */
 var FC = {
   GER:"de",PAR:"py",FRA:"fr",SWE:"se",RSA:"za",CAN:"ca",NED:"nl",MAR:"ma",
@@ -456,7 +456,12 @@ var M = {
         {min:"90+6'",type:"yellow",team:"top",pl:"ネイマール",nt:"オデゴールを削るファウルで警告"},
         {min:"90+10'",type:"pen",team:"top",pl:"ネイマール",nt:"カゼミーロへの反則で得たPKを沈め1点差に迫るも及ばず"}
       ]},
-  RB:{col:"R_R16",dt:"7/6(月) 9:00",status:"upcoming",top:t("MEX"),bot:t("ENG")},
+  RB:{col:"R_R16",dt:"7/6(月) 9:00",venue:"エスタディオ アステカ",status:"live",minute:"前半",
+      top:t("MEX",0),bot:t("ENG",0),
+      events:[
+        {min:"開始前",type:"info",pl:"荒天のため試合開始が約1時間遅延",nt:"予定20:00(現地)→21:00(現地)頃にキックオフ変更"},
+        {min:"前半",type:"info",pl:"試合開始",nt:"エスタディオ・アステカで超満員の中キックオフ"}
+      ]},
   RC:{col:"R_R16",dt:"7/8(水) 1:00",status:"upcoming",top:t("ARG"),bot:t("EGY")},
   RD:{col:"R_R16",dt:"7/8(水) 5:00",status:"upcoming",top:t("SUI"),bot:t("COL")},
   RQ1:{col:"R_QF",dt:"7/12(日) 6:00",status:"upcoming",top:t("NOR"),bot:t("TBD")},
