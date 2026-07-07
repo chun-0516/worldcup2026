@@ -230,14 +230,14 @@
 <div class="bracket-wrap"><div class="bracket" id="bracket"><svg id="lines"></svg></div></div>
 <div class="hint">
   ※ 表示中のデータは「更新時刻」時点のものです。自動更新が有効な場合、スコアが動いた時だけファイルが書き換わります。<br>
-  「🔄 更新」ボタンは最新データの有無を確認してから反映します。試合中は裏側でも定期的にチェックし、新着があれば通知・自動更新します。得点者・カード・交代は判明分のみ掲載。時間はすべて日本時間（JST）。
+  「🔄 更新」ボタンは最新データの有無を確認してから反映します。試合中は裏側でも定期的にチェックし、新着があれば通知・自動更新します。得点者・カード・交代は判明分のみ掲載。時間はすべて日本時間(JST)。
 </div>
 
 <div class="overlay" id="overlay" onclick="if(event.target===this)closeModal()"><div class="modal" id="modal"></div></div>
 <div class="toast-wrap" id="toastWrap"></div>
 
 <script>
-var DATA_UPDATED = "2026/7/6 (月) 12:11 取得";
+var DATA_UPDATED = "2026/7/7 (火) 10:29 取得";
 /* 国旗は flagcdn.com の公式国旗SVGを使用（全環境で正しく表示）。要ネット接続。 */
 var FC = {
   GER:"de",PAR:"py",FRA:"fr",SWE:"se",RSA:"za",CAN:"ca",NED:"nl",MAR:"ma",
@@ -372,10 +372,27 @@ var M = {
         {min:"82'",type:"goal",team:"bot",pl:"ウナヒ",nt:"ディアスのスルーパスに反応しカウンターからこの試合2点目"},
         {min:"90+8'",type:"goal",team:"bot",pl:"ラヒミ",nt:"モロッコが3点目、ベスト8進出を決定づける"}
       ]},
-  LC:{col:"L_R16",dt:"7/7(火) 4:00",status:"upcoming",top:t("POR"),bot:t("ESP")},
-  LD:{col:"L_R16",dt:"7/7(火) 9:00",status:"upcoming",top:t("USA"),bot:t("BEL")},
+  LC:{col:"L_R16",dt:"7/7(火) 4:00",venue:"AT&Tスタジアム",status:"finished",
+      top:t("POR",0),bot:t("ESP",1),winner:"bot",
+      events:[
+        {min:"89'",type:"yellow",team:"top",pl:"ベルナルド・シウバ",nt:"警告"},
+        {min:"90+1'",type:"goal",team:"bot",pl:"ミケル・メリノ",nt:"フェラン・トーレスの折り返しをニアで押し込み劇的な決勝点／クリスティアーノ・ロナウド、涙のW杯ラストマッチに"},
+        {min:"90+4'",type:"yellow",team:"top",pl:"レナト・ヴェイガ",nt:"警告"},
+        {min:"90+9'",type:"yellow",team:"bot",pl:"フェラン・トーレス",nt:"警告"}
+      ]},
+  LD:{col:"L_R16",dt:"7/7(火) 9:00",venue:"ルーメン・フィールド",status:"live",minute:"後半 59分",
+      top:t("USA",1),bot:t("BEL",3),
+      events:[
+        {min:"9'",type:"goal",team:"bot",pl:"シャルル・デケテラーレ",nt:"ベルギー先制"},
+        {min:"31'",type:"goal",team:"top",pl:"マリク・ティルマン",nt:"直接FKを豪快に決めてアメリカ同点"},
+        {min:"33'",type:"goal",team:"bot",pl:"シャルル・デケテラーレ",nt:"トロサールのクロスにヘッドで合わせこの試合2点目、ベルギーが勝ち越し"},
+        {min:"HT",type:"info",pl:"前半終了 アメリカ1-2ベルギー",nt:"デケテラーレのブレイスでベルギーがリードして折り返す"},
+        {min:"後半",type:"sub",team:"top",pl:"ジオ・レイナ",nt:"デストに代わり後半開始から投入"},
+        {min:"57'",type:"goal",team:"bot",pl:"ハンス・ファナーケン",nt:"デケテラーレの落としを豪快なロブでGKフリーゼの頭上を越えてベルギーが3点目"},
+        {min:"59'",type:"sub",team:"top",pl:"セバスチャン・バーホルター",nt:"プリシッチに代えて投入"}
+      ]},
   LQ1:{col:"L_QF",dt:"7/10(金) 5:00",status:"upcoming",top:t("FRA"),bot:t("MAR")},
-  LQ2:{col:"L_QF",dt:"7/11(土) 4:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
+  LQ2:{col:"L_QF",dt:"7/11(土) 4:00",status:"upcoming",top:t("ESP"),bot:t("TBD")},
   LSF:{col:"L_SF",dt:"7/15(水) 4:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
   R1:{col:"R_R32",dt:"6/29(月)",venue:"ヒューストン・スタジアム",status:"finished",top:t("BRA",2),bot:t("JPN",1),winner:"top",
       events:[
