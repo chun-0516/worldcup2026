@@ -237,7 +237,7 @@
 <div class="toast-wrap" id="toastWrap"></div>
 
 <script>
-var DATA_UPDATED = "2026/7/7 (火) 11:16 取得";
+var DATA_UPDATED = "2026/7/10 (金) 05:06 取得";
 /* 国旗は flagcdn.com の公式国旗SVGを使用（全環境で正しく表示）。要ネット接続。 */
 var FC = {
   GER:"de",PAR:"py",FRA:"fr",SWE:"se",RSA:"za",CAN:"ca",NED:"nl",MAR:"ma",
@@ -396,7 +396,8 @@ var M = {
         {min:"90+3'",type:"goal",team:"bot",pl:"ロメル・ルカク",nt:"途中出場から値千金のダメ押しゴール、ベルギーが4-1で快勝しベスト8進出"},
         {min:"試合終了",type:"info",pl:"ベルギーが4-1で勝利",nt:"アメリカはベスト16で敗退。ベルギーはベスト8でスペインと対戦"}
       ]},
-  LQ1:{col:"L_QF",dt:"7/10(金) 5:00",status:"upcoming",top:t("FRA"),bot:t("MAR")},
+  LQ1:{col:"L_QF",dt:"7/10(金) 5:00",venue:"ジレット・スタジアム",status:"live",minute:"前半 序盤",
+      top:t("FRA",0),bot:t("MAR",0)},
   LQ2:{col:"L_QF",dt:"7/11(土) 4:00",status:"upcoming",top:t("ESP"),bot:t("BEL")},
   LSF:{col:"L_SF",dt:"7/15(水) 4:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
   R1:{col:"R_R32",dt:"6/29(月)",venue:"ヒューストン・スタジアム",status:"finished",top:t("BRA",2),bot:t("JPN",1),winner:"top",
@@ -494,10 +495,38 @@ var M = {
         {min:"69'",type:"pen",team:"top",pl:"ラウル・ヒメネス",nt:"ケインがグティエレスと交錯しPK、ヒメネスが左隅に決めて1点差に"},
         {min:"試合終了",type:"info",pl:"イングランドが3-2で勝利",nt:"クアンサ退場で10人になるも逃げ切り、ベスト8でノルウェーと対戦"}
       ]},
-  RC:{col:"R_R16",dt:"7/8(水) 1:00",status:"upcoming",top:t("ARG"),bot:t("EGY")},
-  RD:{col:"R_R16",dt:"7/8(水) 5:00",status:"upcoming",top:t("SUI"),bot:t("COL")},
+  RC:{col:"R_R16",dt:"7/8(水) 1:00",status:"finished",top:t("ARG",3),bot:t("EGY",2),winner:"top",
+      events:[
+        {min:"15'",type:"goal",team:"bot",pl:"ヤセル・イブラヒム",nt:"アティアのコーナーキックにヘディングで合わせエジプトが先制"},
+        {min:"前半",type:"info",pl:"メッシ、PK失敗",nt:"ハッサンのタリアフィコへのファウルで獲得したPKをGKモスタファ・ショベイルにセーブされる"},
+        {min:"HT",type:"info",pl:"前半終了 アルゼンチン0-1エジプト",nt:"GKショベイルの再三の好セーブでエジプトが1点リードのまま折り返す"},
+        {min:"後半",type:"sub",team:"bot",pl:"ファティ",nt:"負傷したアショールに代わり投入"},
+        {min:"67'",type:"goal",team:"bot",pl:"モスタファ・ジコ",nt:"エジプトが追加点を挙げ2点差に"},
+        {min:"79'",type:"goal",team:"top",pl:"クリスティアン・ロメロ",nt:"メッシのクロスにヘディングで合わせアルゼンチンが1点差に詰め寄る"},
+        {min:"83'",type:"goal",team:"top",pl:"リオネル・メッシ",nt:"ワンタッチのシュートを叩き込み同点2-2／今大会通算8得点"},
+        {min:"90+3'",type:"goal",team:"top",pl:"エンソ・フェルナンデス",nt:"ラウタロ・マルティネスのクロスにヘディングで合わせ土壇場の決勝点"},
+        {min:"90+5'",type:"yellow",team:"bot",pl:"ハムディ・ファティ",nt:"警告"},
+        {min:"90+5'",type:"yellow",team:"bot",pl:"モスタファ・ショベイル",nt:"GK、警告"},
+        {min:"90+8'",type:"yellow",team:"bot",pl:"マルワン・アティア",nt:"警告"},
+        {min:"試合終了",type:"info",pl:"アルゼンチンが3-2で逆転勝利",nt:"2点のビハインドを跳ね返しベスト8進出。準々決勝でベルギーと対戦"}
+      ]},
+  RD:{col:"R_R16",dt:"7/8(水) 5:00",status:"finished",
+      top:t("SUI",0),bot:t("COL",0),pen:{top:4,bot:3},winner:"top",
+      events:[
+        {min:"HT",type:"info",pl:"前半終了 0-0",nt:"互いに決定機を作れず前半はスコアレスで終了"},
+        {min:"46'",type:"sub",team:"top",pl:"ジブリル・ソウ",nt:"ジャシャリに代わり後半開始から投入"},
+        {min:"後半",type:"info",pl:"ンドエの決定機",nt:"シャカのスルーパスに抜け出すもGKバルガスに阻まれる"},
+        {min:"51'",type:"yellow",team:"top",pl:"グラニト・ジャカ",nt:"警告"},
+        {min:"59'",type:"yellow",team:"top",pl:"ドゥニ・ザカリア",nt:"警告"},
+        {min:"60'",type:"yellow",team:"bot",pl:"ルイス・スアレス",nt:"警告"},
+        {min:"90分",type:"info",pl:"90分終了時点で0-0",nt:"決定機を活かせず延長戦へ"},
+        {min:"95'",type:"yellow",team:"bot",pl:"ダビンソン・サンチェス",nt:"延長前半、警告"},
+        {min:"105'",type:"yellow",team:"top",pl:"ミロ・ムハイム",nt:"延長後半、警告"},
+        {min:"120分",type:"info",pl:"延長終了も0-0のままPK戦へ",nt:"120分を戦うも両者無得点"},
+        {min:"PK",type:"pen",team:"top",pl:"PK戦 4-3",nt:"GKコベルがエルナンデスの一本をセーブ、最後はバルガスが決めてスイスが8大会ぶりのベスト8進出。準々決勝でアルゼンチンと対戦"}
+      ]},
   RQ1:{col:"R_QF",dt:"7/12(日) 6:00",status:"upcoming",top:t("NOR"),bot:t("ENG")},
-  RQ2:{col:"R_QF",dt:"7/12(日) 10:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
+  RQ2:{col:"R_QF",dt:"7/12(日) 10:00",status:"upcoming",top:t("ARG"),bot:t("SUI")},
   RSF:{col:"R_SF",dt:"7/16(木) 4:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
   FINAL:{col:"CENTER",dt:"7/20(月) 4:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
   THIRD:{col:"CENTER",dt:"7/19(日) 6:00",status:"upcoming",top:t("TBD"),bot:t("TBD")}
