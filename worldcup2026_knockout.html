@@ -237,7 +237,7 @@
 <div class="toast-wrap" id="toastWrap"></div>
 
 <script>
-var DATA_UPDATED = "2026/7/10 (金) 05:06 取得";
+var DATA_UPDATED = "2026/7/15 (水) 04:08 取得";
 /* 国旗は flagcdn.com の公式国旗SVGを使用（全環境で正しく表示）。要ネット接続。 */
 var FC = {
   GER:"de",PAR:"py",FRA:"fr",SWE:"se",RSA:"za",CAN:"ca",NED:"nl",MAR:"ma",
@@ -396,10 +396,29 @@ var M = {
         {min:"90+3'",type:"goal",team:"bot",pl:"ロメル・ルカク",nt:"途中出場から値千金のダメ押しゴール、ベルギーが4-1で快勝しベスト8進出"},
         {min:"試合終了",type:"info",pl:"ベルギーが4-1で勝利",nt:"アメリカはベスト16で敗退。ベルギーはベスト8でスペインと対戦"}
       ]},
-  LQ1:{col:"L_QF",dt:"7/10(金) 5:00",venue:"ジレット・スタジアム",status:"live",minute:"前半 序盤",
-      top:t("FRA",0),bot:t("MAR",0)},
-  LQ2:{col:"L_QF",dt:"7/11(土) 4:00",status:"upcoming",top:t("ESP"),bot:t("BEL")},
-  LSF:{col:"L_SF",dt:"7/15(水) 4:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
+  LQ1:{col:"L_QF",dt:"7/10(金) 5:00",venue:"ジレット・スタジアム",status:"finished",
+      top:t("FRA",2),bot:t("MAR",0),winner:"top",
+      events:[
+        {min:"27'",type:"info",pl:"キリアン・エムバペ、PK失敗",nt:"24分に獲得したPKを右足で狙うも、GKブヌに読まれ阻まれる"},
+        {min:"45'",type:"info",pl:"前半終了 0-0",nt:"ディーニュのシュートがクロスバー直撃もスコアレスで折り返す"},
+        {min:"59'",type:"goal",team:"top",pl:"キリアン・エムバペ",nt:"カウンターからペナルティエリア外へ持ち出し右足を巻いてブヌの逆を突きフランス先制"},
+        {min:"62'",type:"yellow",team:"bot",pl:"イッサ・ディオプ",nt:"エムバペへの荒いファウルで警告"},
+        {min:"65'",type:"goal",team:"top",pl:"ウスマン・デンベレ",nt:"エムバペが守備を引きつけたスペースを突き、ゴール前で右足を合わせフランスが2点差"},
+        {min:"77'",type:"sub",team:"top",pl:"マテタ、バルコラ",nt:"エムバペ(足首に違和感)とドゥエに代えて投入／エムバペは試合後は問題ないとコメント"},
+        {min:"試合終了",type:"info",pl:"フランスが2-0で快勝し準決勝進出",nt:"エムバペ・デンベレが得点。フランスは今大会無傷の6連勝で3大会連続の準決勝進出。準決勝でスペイン×ベルギーの勝者と対戦"}
+      ]},
+  LQ2:{col:"L_QF",dt:"7/11(土) 4:00",venue:"ソフィ・スタジアム",status:"finished",
+      top:t("ESP",2),bot:t("BEL",1),winner:"top",
+      events:[
+        {min:"30'",type:"goal",team:"top",pl:"ファビアン・ルイス",nt:"ダニ・オルモのシュートのこぼれ球を押し込みスペイン先制"},
+        {min:"40'",type:"goal",team:"bot",pl:"シャルル・デ・ケテラーレ",nt:"カスタンのクロスに頭で合わせベルギー同点"},
+        {min:"88'",type:"goal",team:"top",pl:"ミケル・メリノ",nt:"途中出場からわずか2分弱でクバルシのシュートのこぼれ球を押し込み決勝点"},
+        {min:"90+2'",type:"yellow",team:"top",pl:"アイメリク・ラポルト",nt:"ドクを倒す危険なプレーで警告"},
+        {min:"90+4'",type:"yellow",team:"bot",pl:"アクセル・ビツェル",nt:"ロドリへの遅れたタックルで警告"},
+        {min:"試合終了",type:"info",pl:"スペインが2-1で勝利し準決勝進出",nt:"メリノの途中出場ゴールが決勝点。準決勝でフランスと対戦"}
+      ]},
+  LSF:{col:"L_SF",dt:"7/15(水) 4:00",venue:"AT&Tスタジアム",status:"live",minute:"前半 8分",
+      top:t("FRA",0),bot:t("ESP",0)},
   R1:{col:"R_R32",dt:"6/29(月)",venue:"ヒューストン・スタジアム",status:"finished",top:t("BRA",2),bot:t("JPN",1),winner:"top",
       events:[
         {min:"29'",type:"goal",team:"bot",pl:"佐野 海舟",nt:"日本が先制"},
@@ -525,9 +544,28 @@ var M = {
         {min:"120分",type:"info",pl:"延長終了も0-0のままPK戦へ",nt:"120分を戦うも両者無得点"},
         {min:"PK",type:"pen",team:"top",pl:"PK戦 4-3",nt:"GKコベルがエルナンデスの一本をセーブ、最後はバルガスが決めてスイスが8大会ぶりのベスト8進出。準々決勝でアルゼンチンと対戦"}
       ]},
-  RQ1:{col:"R_QF",dt:"7/12(日) 6:00",status:"upcoming",top:t("NOR"),bot:t("ENG")},
-  RQ2:{col:"R_QF",dt:"7/12(日) 10:00",status:"upcoming",top:t("ARG"),bot:t("SUI")},
-  RSF:{col:"R_SF",dt:"7/16(木) 4:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
+  RQ1:{col:"R_QF",dt:"7/12(日) 6:00",venue:"ハードロック・スタジアム",status:"finished",
+      top:t("NOR",1),bot:t("ENG",2),winner:"bot",
+      events:[
+        {min:"36'",type:"goal",team:"top",pl:"アンドレアス・シェルデルップ",nt:"ノルウェー先制"},
+        {min:"45+2'",type:"goal",team:"bot",pl:"ジュード・ベリンガム",nt:"前半終了間際に同点弾、1-1で折り返す"},
+        {min:"93'",type:"goal",team:"bot",pl:"ジュード・ベリンガム",nt:"延長前半にこの試合2点目、ブレイス達成でイングランドが勝ち越し"},
+        {min:"117'",type:"yellow",team:"top",pl:"クリストファー・アイエル",nt:"延長後半、警告"},
+        {min:"試合終了",type:"info",pl:"イングランドが2-1(延長)で勝利",nt:"ベリンガムの2ゴールで準決勝進出。準決勝でアルゼンチン×スイスの勝者と対戦"}
+      ]},
+  RQ2:{col:"R_QF",dt:"7/12(日) 10:00",venue:"アローヘッド・スタジアム",status:"finished",
+      top:t("ARG",3),bot:t("SUI",1),winner:"top",
+      events:[
+        {min:"10'",type:"goal",team:"top",pl:"アレクシス・マック・アリスター",nt:"メッシのコーナーキックにヘディングで合わせアルゼンチン先制"},
+        {min:"67'",type:"goal",team:"bot",pl:"ダン・ンドイェ",nt:"ロドリゲスのアシストからスイスが同点"},
+        {min:"前半終了間際",type:"yellow",team:"bot",pl:"ブレル・エンボロ",nt:"パレデスへの不用意なチャレンジで警告(1枚目)"},
+        {min:"72'",type:"red",team:"bot",pl:"ブレル・エンボロ",nt:"パレデスとの接触でファウルの判定も、VAR確認の結果シミュレーションと判定が覆り2枚目のイエローで退場。誤認をめぐり試合後にスイス側が猛抗議"},
+        {min:"90分",type:"info",pl:"90分終了時点で1-1",nt:"延長戦へ、スイスは1人少ない状況で戦う"},
+        {min:"112'",type:"goal",team:"top",pl:"フリアン・アルバレス",nt:"延長前半に強烈なミドルシュートを叩き込みアルゼンチンが勝ち越し"},
+        {min:"120+1'",type:"goal",team:"top",pl:"ラウタロ・マルティネス",nt:"カウンターから駄目押しの3点目"},
+        {min:"試合終了",type:"info",pl:"アルゼンチンが3-1(延長)で勝利",nt:"エンボロ退場後の数的優位を活かし延長で突き放し、準決勝でイングランドと対戦(7/15アトランタ)"}
+      ]},
+  RSF:{col:"R_SF",dt:"7/16(木) 4:00",status:"upcoming",top:t("ENG"),bot:t("ARG")},
   FINAL:{col:"CENTER",dt:"7/20(月) 4:00",status:"upcoming",top:t("TBD"),bot:t("TBD")},
   THIRD:{col:"CENTER",dt:"7/19(日) 6:00",status:"upcoming",top:t("TBD"),bot:t("TBD")}
 };
